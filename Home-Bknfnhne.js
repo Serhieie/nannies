@@ -1,0 +1,1 @@
+import{j as t}from"./index-CGPSKSpt.js";const s=()=>t.jsx("div",{className:"h-full w-full bg-skin-background-opacity",children:t.jsx("h2",{className:"text text-xl font-extralight text-skin-inverted",children:"Nanny.Services"})});export{s as default};
