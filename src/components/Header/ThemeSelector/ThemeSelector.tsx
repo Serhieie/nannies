@@ -1,25 +1,36 @@
 import { useState } from 'react';
 import { RiArrowDownSLine } from 'react-icons/ri';
 import { PopUpThemes } from './PopUpThemes/PopUpThemes';
-import { useUserState } from '../../../hooks/useUserState';
+// import { useUserState } from '../../../hooks/useUserState';
+import { useMedia } from '../../../hooks/useMedia';
 
 export const ThemeSelector = () => {
   const [isThemePopUpOpen, setIsThemePopUpOpen] = useState(false);
-  const { theme } = useUserState();
-  const titleTheme =
-    theme === 'red' ? 'Red' : theme === 'blue' ? 'Blue' : 'Green';
+  const { isMobile, isTablet } = useMedia();
+  // const { theme } = useUserState();
+  // const titleTheme =
+  //   theme === 'red' ? 'Red' : theme === 'blue' ? 'Blue' : 'Green';
 
   const toggleOpenTheme = async () => {
     setIsThemePopUpOpen((state) => !state);
   };
 
   return (
-    <div onClick={toggleOpenTheme} className="relative mr-14 cursor-pointer">
-      <span className="border-skin-inverted hover:bg-skin-background-white hover:text-skin-theme flex w-36 transform select-none items-center justify-between gap-4 rounded-3xl border bg-transparent px-3 py-1 text-sm font-medium text-skin-inverted transition-all duration-300">
-        {titleTheme}{' '}
+    <div
+      onClick={toggleOpenTheme}
+      className="z-1 relative w-full cursor-pointer"
+    >
+      <span className="flex w-full transform select-none items-center justify-between gap-1 rounded-full border border-skin-inverted border-opacity-40 bg-transparent px-12 py-3.5 text-lg font-medium text-skin-inverted transition-all duration-300 hover:bg-skin-background-white hover:text-skin-theme xl:px-6 xl:py-2.5 xl:text-base">
+        Theme
         <RiArrowDownSLine
           size={18}
-          className="transition-stroke transition-transform"
+          className={`${
+            isThemePopUpOpen
+              ? isMobile || isTablet
+                ? 'rotate-0'
+                : 'rotate-0'
+              : '-rotate-90'
+          } transition-stroke transition-transform`}
         />
       </span>
       <PopUpThemes isThemePopUpOpen={isThemePopUpOpen} />

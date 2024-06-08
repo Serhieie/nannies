@@ -37,7 +37,7 @@ export const Frame: React.FC<FrameProps> = ({
         <img src={imageSrc} alt="Framed user avatar" className={imgClasses} />
       ) : (
         <svg
-          className="fill-skin-primary"
+          className="fill-skin-primary transition-colors duration-300 md:h-10 md:w-10"
           xmlns="http://www.w3.org/2000/svg"
           width="30"
           height="30"

@@ -27,6 +27,7 @@ export default {
           'muted-button': withOpacity('--color-button-muted'),
           'muted-button-hover': withOpacity('--color-button-muted-hover'),
           'background-white': withOpacity('--color-background-white'),
+          overlay: withOpacity('--color-overlay'),
         },
       },
       borderColor: {
@@ -47,6 +48,19 @@ export default {
           inverted: withOpacity('--color-background-white'),
         },
       },
+      keyframes: {
+        after: {
+          content: '""',
+          position: 'absolute',
+          bottom: '-5px',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          width: '10px',
+          height: '10px',
+          'background-color': 'white',
+          'border-radius': '50%',
+        },
+      },
     },
     screens: {
       xs: '320px',
@@ -57,5 +71,32 @@ export default {
       xxl: '1920px',
     },
   },
-  plugins: [],
+  plugins: [
+    function ({ addUtilities }) {
+      addUtilities({
+        '.custom-after-bottom::before': {
+          content: '""',
+          position: 'absolute',
+          bottom: '-8px',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          width: '8px',
+          height: '8px',
+          backgroundColor: 'var(--color-background-white-after)',
+          borderRadius: '50%',
+        },
+        '.custom-after-right::after': {
+          content: '""',
+          position: 'absolute',
+          left: '-16px',
+          top: '42%',
+          transform: 'translate(-50%)',
+          width: '8px',
+          height: '8px',
+          backgroundColor: 'var(--color-background-white-after)',
+          borderRadius: '50%',
+        },
+      });
+    },
+  ],
 };

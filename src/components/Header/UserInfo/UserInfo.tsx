@@ -25,8 +25,8 @@ export const UserInfo: React.FC<UserInfoProps> = () => {
         onClick={toggleUserInfoModal}
         className="user-select-none relative flex cursor-pointer items-center gap-3"
       >
-        <Frame width="w-8" border="rounded-[30px]" />
-        <p className="text-[18px] text-base font-semibold leading-[111%] text-skin-inverted">
+        <Frame width="w-10" border="rounded-[30px]" />
+        <p className="text-base font-semibold leading-[111%] text-skin-inverted md:text-[18px]">
           {name}Ilona
         </p>
       </div>
