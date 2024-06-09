@@ -11,9 +11,10 @@
     --color-badge: 243, 243, 243;
     --color-button-accent: 240, 63, 59;
     --color-button-hover: 251, 251, 251;
-    --color-button-muted: 251, 251, 251;
-    --color-button-muted-hover: 251, 251, 251;
+    --color-button-muted: transparent;
+    --color-button-muted-hover: transparent;
     --color-overlay: 11, 11, 11;
+    --color-border-grey: 17, 16, 28;
     --color-background-white-after: rgb(251, 251, 251);
     --color-text-inverted-theme-after: rgb(240, 63, 59);
   }
@@ -28,8 +29,8 @@
     --color-badge: 243, 243, 243;
     --color-button-accent: 9, 87, 195;
     --color-button-hover: 251, 251, 251;
-    --color-button-muted: 251, 251, 251;
-    --color-button-muted-hover: 251, 251, 251;
+    --color-button-muted: transparent;
+    --color-button-muted-hover: transparent;
     --color-background-white-after: rgb(251, 251, 251);
     --color-text-inverted-theme-after: rgb(9, 87, 195);
   }
@@ -44,8 +45,8 @@
     --color-badge: 243, 243, 243;
     --color-button-accent: 16, 57, 49;
     --color-button-hover: 251, 251, 251;
-    --color-button-muted: 251, 251, 251;
-    --color-button-muted-hover: 251, 251, 251;
+    --color-button-muted: transparent;
+    --color-button-muted-hover: transparent;
     --color-background-white-after: rgb(251, 251, 251);
     --color-text-inverted-theme-after: rgb(16, 57, 49);
   }

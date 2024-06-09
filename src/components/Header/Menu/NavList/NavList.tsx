@@ -1,9 +1,9 @@
 import { IoCloseSharp } from 'react-icons/io5';
 import { NavItem } from '../NavItem/NavItem';
 import clsx from 'clsx';
-import { nanoid } from 'nanoid';
 import { NavListProps } from './NavList.types';
 import { useMedia } from '../../../../hooks/useMedia';
+import { useLocation } from 'react-router-dom';
 
 const links = [
   { text: 'Home', to: '/' },
@@ -13,6 +13,10 @@ const links = [
 
 export const NavList: React.FC<NavListProps> = ({ onClose }) => {
   const { isDesktop } = useMedia();
+  const location = useLocation();
+  const isUserInfoShow =
+    location.pathname === '/nannies' || location.pathname === '/favorites';
+
   return (
     <>
       {!isDesktop && (
@@ -24,10 +28,22 @@ export const NavList: React.FC<NavListProps> = ({ onClose }) => {
           <IoCloseSharp className="pointer-events-none" size={32} />
         </button>
       )}
-      <ul className={clsx('flex gap-10', 'xl:flex-row', 'w-full flex-col')}>
-        {links.map((link) => (
-          <NavItem key={nanoid()} text={link.text} to={link.to} />
-        ))}
+      <ul
+        className={clsx(
+          'flex w-full items-center gap-10',
+          'xl:flex-row',
+          'flex-col'
+        )}
+      >
+        {links.map((link) =>
+          link.text === 'Favorites' ? (
+            isUserInfoShow && (
+              <NavItem key={link.to} text={link.text} to={link.to} />
+            )
+          ) : (
+            <NavItem key={link.to} text={link.text} to={link.to} />
+          )
+        )}
       </ul>
     </>
   );

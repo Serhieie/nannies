@@ -1,5 +1,5 @@
 export interface FrameProps {
-  width: string;
+  width?: string;
   height?: string;
   isCircle?: boolean;
   border?: string;

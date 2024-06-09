@@ -3,6 +3,6 @@ export interface ButtonProps {
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   className?: string;
   children?: React.ReactNode;
-  text: string;
+  text?: string;
   primary?: boolean;
 }

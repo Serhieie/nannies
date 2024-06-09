@@ -34,6 +34,7 @@ export default {
         skin: {
           primary: withOpacity('--color-text-inverted-theme'),
           inverted: withOpacity('--color-background-white'),
+          grey: withOpacity('--color-border-grey'),
         },
       },
       fill: {
@@ -44,6 +45,7 @@ export default {
       },
       stroke: {
         skin: {
+          'base-text': withOpacity('--color-text-base'),
           primary: withOpacity('--color-text-inverted-theme'),
           inverted: withOpacity('--color-background-white'),
         },
@@ -66,6 +68,7 @@ export default {
       xs: '320px',
       sm: '375px',
       md: '768px',
+      md2: '950px',
       lg: '1200px',
       xl: '1440px',
       xxl: '1920px',
@@ -77,7 +80,7 @@ export default {
         '.custom-after-bottom::before': {
           content: '""',
           position: 'absolute',
-          bottom: '-8px',
+          bottom: '12px',
           left: '50%',
           transform: 'translateX(-50%)',
           width: '8px',

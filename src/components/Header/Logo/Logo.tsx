@@ -2,7 +2,10 @@ import { NavLink } from 'react-router-dom';
 
 export const Logo = () => {
   return (
-    <NavLink className={'leading-[117%] xs:text-lg md:text-2xl'} to={'/'}>
+    <NavLink
+      className={'z-50 text-2xl leading-[117%] xs:mb-2 md:mb-0'}
+      to={'/'}
+    >
       Nanny.Services
     </NavLink>
   );

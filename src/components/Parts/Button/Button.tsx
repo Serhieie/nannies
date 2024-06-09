@@ -14,9 +14,9 @@ export const Button: React.FC<ButtonProps> = ({
       onClick={onClick}
       className={`${
         primary
-          ? 'border-skin-inverted border-opacity-40 bg-skin-background hover:bg-skin-background-white hover:text-skin-theme'
-          : 'border-skin-primary border-opacity-100 bg-skin-background-white text-skin-theme hover:border-skin-inverted hover:border-opacity-40 hover:bg-skin-background hover:text-skin-inverted'
-      } flex w-full items-center justify-center rounded-[30px] border transition-all duration-300 ${className}`}
+          ? 'bg-skin-background hover:bg-skin-background-white hover:text-skin-theme'
+          : 'bg-skin-background-muted border border-skin-inverted border-opacity-40 text-skin-inverted hover:bg-skin-background hover:bg-opacity-40'
+      } flex h-[52px] w-full min-w-[124px] items-center justify-center rounded-[30px] transition-all duration-300 ${className}`}
     >
       {text}
       {children}

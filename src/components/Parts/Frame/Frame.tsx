@@ -5,11 +5,11 @@ import heroImage2x from '../../../assets/images/HeroX2.webp';
 import sprite from '../../../assets/sprite.svg';
 
 export const Frame: React.FC<FrameProps> = ({
-  width,
+  width = 'w-full',
   imageSrc = '',
   border = 'rounded-lg',
   isCircle = false,
-  height = width,
+  height = 'h-auto',
   position = 'object-center',
   hero = false,
 }) => {
@@ -17,8 +17,8 @@ export const Frame: React.FC<FrameProps> = ({
     'relative',
     isCircle ? 'rounded-full overflow-hidden' : border,
     width,
-    height || width,
-    hero ? 'w-[699px] h-[736px]' : ''
+    height,
+    hero ? 'w-full h-[calc(100vh-64px)]' : ''
   );
 
   const imgClasses = clsx('w-full h-full object-cover', position);
@@ -26,13 +26,16 @@ export const Frame: React.FC<FrameProps> = ({
   return (
     <div className={frameClasses}>
       {hero ? (
-        <img
-          src={heroImage}
-          srcSet={`${heroImage} 1x, ${heroImage2x} 2x`}
-          sizes="(max-width: 768px) 100vw, 699px"
-          alt="Baby with nanny reading book in room with warm light"
-          className={imgClasses}
-        />
+        <>
+          <img
+            src={heroImage}
+            srcSet={`${heroImage} 1x, ${heroImage2x} 2x`}
+            sizes="(max-width: 768px) 100vw, 100%"
+            alt="Baby with nanny reading book in room with warm light"
+            className={imgClasses}
+          />
+          <div className="absolute left-0 top-0 h-full w-full bg-[rgba(18,20,23,0.6)] bg-cover"></div>
+        </>
       ) : imageSrc ? (
         <img src={imageSrc} alt="Framed user avatar" className={imgClasses} />
       ) : (
