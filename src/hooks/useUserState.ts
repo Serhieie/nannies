@@ -14,7 +14,7 @@ export interface useAuthReturn {
   userState: UserState;
   isLoggedIn: boolean;
   isLoading: boolean;
-  error: boolean;
+  error: null | string;
   token: string | null;
   avatar: string;
   theme: string;
@@ -23,7 +23,7 @@ export interface useAuthReturn {
 export const useUserState = (): useAuthReturn => {
   const isLoggedIn: boolean = useSelector(getLogedIn);
   const isLoading: boolean = useSelector(getIsLoadingUser);
-  const error: boolean = useSelector(getError);
+  const error: null | string = useSelector(getError);
   const token: string | null = useSelector(getToken);
   const avatar: string = useSelector(getAvatar);
   const theme: string = useSelector(getTheme);

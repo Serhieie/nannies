@@ -4,7 +4,7 @@ export const initialStateUser: UserState = {
   name: '',
   email: '',
   token: '',
-  error: false,
+  error: null,
   isLoggedIn: false,
   isLoadingUser: false,
   avatar: '',

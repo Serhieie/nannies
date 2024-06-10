@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { useUserState } from '../../../hooks/useUserState';
 import { Frame } from '../../Parts/Frame/Frame';
 import { Modal } from '../../Modal/Modal';
-import { useLocation } from 'react-router-dom';
 
 interface UserInfoProps {}
 
@@ -11,9 +10,7 @@ export const UserInfo: React.FC<UserInfoProps> = () => {
   const {
     userState: { name },
   } = useUserState();
-  const location = useLocation();
-  const isUserInfoShow =
-    location.pathname === '/nannies' || location.pathname === '/favorites';
+  const { isLoggedIn } = useUserState();
 
   const toggleUserInfoModal = () => {
     setIsUserInfoOpen((state) => !state);
@@ -24,11 +21,11 @@ export const UserInfo: React.FC<UserInfoProps> = () => {
   };
 
   return (
-    isUserInfoShow && (
+    isLoggedIn && (
       <>
         <div
           onClick={toggleUserInfoModal}
-          className="user-select-none relative flex cursor-pointer items-center gap-3"
+          className={`user-select-none relative flex max-w-52 cursor-pointer items-center gap-3 xs:mx-0 xl:mx-10`}
         >
           <Frame width="w-10" border="rounded-[30px]" />
           <p className="text-base font-semibold leading-[111%] text-skin-inverted md:text-[18px]">

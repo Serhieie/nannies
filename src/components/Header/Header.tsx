@@ -17,7 +17,7 @@ export const Header: React.FC = () => {
         className={`${isHome ? 'xs:backdrop-blur-sm' : ''} absolute left-0 right-0 top-0 h-full w-full md:backdrop-blur-none`}
       ></div>
       <div
-        className={`md2:py-0 flex h-full w-full items-center justify-between xs:flex-col xs:py-2 md:flex-row`}
+        className={`${isHome ? 'md:flex-row' : 'sm:flex-row'} md2:py-0 flex h-full w-full items-center justify-between xs:flex-col xs:py-2 xl:gap-24`}
       >
         <Logo />
         {isHome && (

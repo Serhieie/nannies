@@ -4,8 +4,13 @@ import sprite from '../../assets/sprite.svg';
 import schema from '../../schemas/authSchemas';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Button } from '../Parts/Button/Button';
+import { loginUser } from '../../redux/user/userOperations';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '../../redux/store';
+import { useNavigate } from 'react-router-dom';
+import { useNanniesState } from '../../hooks/useNannieState';
 
-const LoginForm = ({ onSubmit }) => {
+const LoginForm = () => {
   const {
     register,
     handleSubmit,
@@ -14,22 +19,25 @@ const LoginForm = ({ onSubmit }) => {
   } = useForm({
     resolver: yupResolver(schema.validationLoginSchema),
   });
-
+  const dispatch = useDispatch<AppDispatch>();
+  const { nannies } = useNanniesState();
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
 
-  const submitForm = () => {
-    onSubmit();
+  const onSubmit = (data) => {
+    dispatch(loginUser(data));
     reset();
+    if (nannies) navigate('/nannies');
   };
 
   return (
     <form
       className="xs:min-w-[260px]"
-      onSubmit={handleSubmit(submitForm)}
+      onSubmit={handleSubmit(onSubmit)}
       noValidate
       autoComplete="off"
     >

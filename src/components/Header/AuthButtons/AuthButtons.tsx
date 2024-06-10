@@ -18,17 +18,10 @@ export const AuthButtons: React.FC = () => {
     setIsLoginOpen((state) => !state);
   };
 
-  const onSubmitRegistration = () => {
-    console.log('register');
-  };
-  const onSubmitLogin = () => {
-    console.log('login');
-  };
-
   return (
     <>
       <div
-        className={`md2:flex-row flex h-full w-full items-center gap-2 xs:flex-col xl:ml-10`}
+        className={`md2:flex-row flex h-full w-full max-w-96 items-center gap-2 xs:flex-col xl:ml-10`}
       >
         {isHomePage && (
           <>
@@ -37,14 +30,14 @@ export const AuthButtons: React.FC = () => {
               type="button"
               onClick={toggleIsLoginOpen}
               primary={false}
-              className="w-[124px] py-1 text-lg md:py-2"
+              className="max-h-[48px] w-[124px] py-1 text-lg md:py-2"
             />{' '}
             <Button
               text={'Registration'}
               type="button"
               onClick={toggleIsRegistrationOpen}
               primary={true}
-              className={`w-[168px] px-12 py-1 text-lg md:px-10 md:py-2`}
+              className={`max-h-[48px] w-[168px] px-12 py-1 text-lg md:px-10 md:py-2`}
             />
           </>
         )}
@@ -55,7 +48,7 @@ export const AuthButtons: React.FC = () => {
         onClose={toggleIsLoginOpen}
         isOpen={isLoginOpen}
       >
-        <LoginForm onSubmit={onSubmitLogin} />
+        <LoginForm />
       </Modal>
       <Modal
         title="Registration"
@@ -63,7 +56,7 @@ export const AuthButtons: React.FC = () => {
         onClose={toggleIsRegistrationOpen}
         isOpen={isRegistrationOpen}
       >
-        <RegisterForm onSubmit={onSubmitRegistration} />
+        <RegisterForm />
       </Modal>
     </>
   );

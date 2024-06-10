@@ -1,26 +1,30 @@
 import { nanoid } from '@reduxjs/toolkit';
 import clsx from 'clsx';
 import { PopUpThemesProps } from './PopUpThemes.types';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { changeUserTheme } from '../../../../redux/user/userSlice';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '../../../../redux/store';
+import { useUserState } from '../../../../hooks/useUserState';
 
 const themes = ['Red', 'Blue', 'Green'];
 
 export const PopUpThemes: React.FC<PopUpThemesProps> = ({
   isThemePopUpOpen,
 }) => {
-  const [selectedTheme, setSelectedTheme] = useState<string>('');
+  const dispatch = useDispatch<AppDispatch>();
+  const { theme } = useUserState();
 
   const handleChangeTheme = (theme: string) => {
     const themeToSet = theme.toLowerCase();
-    setSelectedTheme(themeToSet);
+    dispatch(changeUserTheme(themeToSet));
   };
   useEffect(() => {
-    if (selectedTheme) {
-      console.log(123);
+    if (theme) {
       document.body.classList.remove('theme-blue', 'theme-green');
-      document.body.classList.add(`theme-${selectedTheme}`);
+      document.body.classList.add(`theme-${theme}`);
     }
-  }, [selectedTheme]);
+  }, [theme]);
 
   return (
     <div

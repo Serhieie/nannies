@@ -1,44 +1,51 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
+import { registerUser, loginUser, logoutUser } from './userOperations';
 import { initialStateUser } from './initialStateUser';
+import { UserState } from './initialStateUser.types';
 import {
   handlePending,
-  handleRegisterFulfilled,
   handleRejected,
+  handleLogoutFulfilled,
 } from './userOperationHandlers';
-import { UserState } from './initialStateUser.types';
-import { registerUser } from './userOperations';
 
 const userSlice = createSlice({
   name: 'user',
   initialState: initialStateUser,
   reducers: {
-    changeUserToken(state: UserState, action: PayloadAction<string>) {
-      state.token = action.payload;
-    },
-    changeIsLoadingToken(state: UserState, action: PayloadAction<boolean>) {
-      state.isLoadingUser = action.payload;
-    },
-    changeUserStatus(state: UserState, action: PayloadAction<boolean>) {
-      state.isLoggedIn = action.payload;
-    },
     changeUserTheme(state: UserState, action: PayloadAction<string>) {
       state.theme = action.payload;
     },
   },
-  extraReducers(builder) {
+  extraReducers: (builder) => {
     builder
       .addCase(registerUser.pending, handlePending)
-      .addCase(registerUser.fulfilled, handleRegisterFulfilled)
-      .addCase(registerUser.rejected, handleRejected);
+      .addCase(registerUser.fulfilled, (state, action) => {
+        state.isLoadingUser = false;
+        state.isLoggedIn = true;
+        state.email = action.payload.email || '';
+        state.token = action.payload.uid;
+      })
+      .addCase(registerUser.rejected, handleRejected)
+      .addCase(loginUser.pending, handlePending)
+      .addCase(loginUser.fulfilled, (state, action) => {
+        state.isLoadingUser = false;
+        state.isLoggedIn = true;
+        state.email = action.payload.email || '';
+        state.token = action.payload.uid;
+      })
+      .addCase(loginUser.rejected, handleRejected)
+      .addCase(logoutUser.pending, handlePending)
+      .addCase(logoutUser.fulfilled, handleLogoutFulfilled)
+      .addCase(logoutUser.rejected, handleRejected);
   },
 });
 
 const authPersistConfig = {
   key: 'user',
   storage,
-  whitelist: ['token', 'theme'],
+  whitelist: ['token', 'theme', 'isLoggedIn'],
 };
 
 export const persistedUserReducer = persistReducer<UserState>(
@@ -46,9 +53,6 @@ export const persistedUserReducer = persistReducer<UserState>(
   userSlice.reducer
 );
 
-export const {
-  changeUserTheme,
-  changeUserToken,
-  changeIsLoadingToken,
-  changeUserStatus,
-} = userSlice.actions;
+export const { changeUserTheme } = userSlice.actions;
+
+export default userSlice.reducer;

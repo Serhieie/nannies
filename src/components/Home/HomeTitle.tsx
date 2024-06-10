@@ -1,7 +1,10 @@
 import { HiArrowRight } from 'react-icons/hi';
-import { Button } from '../Parts/Button/Button';
+import { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 
 export const HomeTitle: React.FC = () => {
+  const [isMouseOn, setIsMouseOn] = useState(false);
+
   const handleGetStarted = () => {
     console.log('get started');
   };
@@ -14,14 +17,19 @@ export const HomeTitle: React.FC = () => {
       <p className="md2:text-2xl leading-[107%] xs:text-3xl md:text-xl xl:text-3xl">
         Find Babysitters Online for All Occasions
       </p>
-      <Button
-        className="flex max-w-[230px] items-center gap-4 border border-white border-opacity-40 px-10 py-4 text-xl leading-[120%]"
-        type="button"
-        text="Get started"
+      <NavLink
+        className="flex max-w-[230px] items-center gap-4 rounded-[30px] border border-white border-opacity-40 px-10 py-4 text-xl leading-[120%]"
+        to={'/nannies'}
         onClick={handleGetStarted}
+        onMouseEnter={() => setIsMouseOn(true)}
+        onMouseLeave={() => setIsMouseOn(false)}
       >
-        <HiArrowRight className={`-rotate-45`} size={28} />
-      </Button>
+        Get started
+        <HiArrowRight
+          className={`${!isMouseOn ? '-rotate-45' : '-rotate-0'} transition-transform duration-500`}
+          size={28}
+        />
+      </NavLink>
     </div>
   );
 };

@@ -4,8 +4,12 @@ import sprite from '../../assets/sprite.svg';
 import { yupResolver } from '@hookform/resolvers/yup';
 import schema from '../../schemas/authSchemas';
 import { Button } from '../Parts/Button/Button';
+import { registerUser } from '../../redux/user/userOperations';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { AppDispatch } from '../../redux/store';
 
-const RegisterForm = ({ onSubmit }) => {
+const RegisterForm = () => {
   const {
     reset,
     register,
@@ -15,20 +19,23 @@ const RegisterForm = ({ onSubmit }) => {
     resolver: yupResolver(schema.validationRegistrSchema),
   });
   const [showPassword, setShowPassword] = useState(false);
+  const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigate();
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
 
-  const submitForm = () => {
-    onSubmit();
+  const onSubmit = (data) => {
+    dispatch(registerUser(data));
     reset();
+    navigate('/nannies');
   };
 
   return (
     <form
       className="mt-2.5 flex flex-col gap-5"
-      onSubmit={handleSubmit(submitForm)}
+      onSubmit={handleSubmit(onSubmit)}
       noValidate
       autoComplete="off"
     >

@@ -3,7 +3,7 @@ import { NavItem } from '../NavItem/NavItem';
 import clsx from 'clsx';
 import { NavListProps } from './NavList.types';
 import { useMedia } from '../../../../hooks/useMedia';
-import { useLocation } from 'react-router-dom';
+import { useUserState } from '../../../../hooks/useUserState';
 
 const links = [
   { text: 'Home', to: '/' },
@@ -13,9 +13,8 @@ const links = [
 
 export const NavList: React.FC<NavListProps> = ({ onClose }) => {
   const { isDesktop } = useMedia();
-  const location = useLocation();
-  const isUserInfoShow =
-    location.pathname === '/nannies' || location.pathname === '/favorites';
+  const { token, isLoggedIn } = useUserState();
+  const isFavoritesAvailable = token && isLoggedIn;
 
   return (
     <>
@@ -30,14 +29,14 @@ export const NavList: React.FC<NavListProps> = ({ onClose }) => {
       )}
       <ul
         className={clsx(
-          'flex w-full items-center gap-10',
+          'flex items-center justify-center gap-10 xs:w-[194px]',
           'xl:flex-row',
           'flex-col'
         )}
       >
         {links.map((link) =>
           link.text === 'Favorites' ? (
-            isUserInfoShow && (
+            isFavoritesAvailable && (
               <NavItem key={link.to} text={link.text} to={link.to} />
             )
           ) : (
