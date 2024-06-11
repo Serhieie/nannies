@@ -12,9 +12,10 @@ export const Frame: React.FC<FrameProps> = ({
   height = 'h-auto',
   position = 'object-center',
   hero = false,
+  avaClass,
 }) => {
   const frameClasses = clsx(
-    'relative',
+    `relative`,
     isCircle ? 'rounded-full overflow-hidden' : border,
     width,
     height,
@@ -37,7 +38,13 @@ export const Frame: React.FC<FrameProps> = ({
           <div className="absolute left-0 top-0 h-full w-full bg-[rgba(18,20,23,0.6)] bg-cover"></div>
         </>
       ) : imageSrc ? (
-        <img src={imageSrc} alt="Framed user avatar" className={imgClasses} />
+        <img
+          src={imageSrc}
+          alt="Framed user avatar"
+          className={avaClass}
+          width={width}
+          height={height}
+        />
       ) : (
         <svg
           className="fill-skin-primary transition-colors duration-300 md:h-10 md:w-10"

@@ -1,4 +1,5 @@
 export interface Nanny {
+  id: string;
   about: string;
   avatar_url: string;
   birthday: string;
@@ -21,6 +22,8 @@ export interface Review {
 
 export interface NanniesState {
   nannies: Nanny[];
+  favorites: Nanny[];
+  activeNannie: Nanny;
   isLoading: boolean;
   error: string | null;
   status: 'idle' | 'loading' | 'succeeded' | 'failed';

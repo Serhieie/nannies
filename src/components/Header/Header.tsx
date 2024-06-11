@@ -14,10 +14,10 @@ export const Header: React.FC = () => {
       } flex min-h-[88px] items-center bg-skin-background text-skin-inverted transition-colors duration-300 sm:py-0`}
     >
       <div
-        className={`${isHome ? 'xs:backdrop-blur-sm' : ''} absolute left-0 right-0 top-0 h-full w-full md:backdrop-blur-none`}
+        className={`${isHome ? 'xs:backdrop-blur-sm' : 'hidden'} absolute left-0 right-0 top-0 h-full w-full md:backdrop-blur-none`}
       ></div>
       <div
-        className={`${isHome ? 'md:flex-row' : 'sm:flex-row'} md2:py-0 flex h-full w-full items-center justify-between xs:flex-col xs:py-2 xl:gap-24`}
+        className={`${isHome ? 'md:flex-row' : 'sm:flex-row'} flex h-full w-full items-center justify-between xs:flex-col xs:py-2 md2:py-0 xl:gap-24`}
       >
         <Logo />
         {isHome && (

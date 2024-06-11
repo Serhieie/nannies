@@ -8,6 +8,7 @@
     --color-background: 240, 63, 59;
     --color-background-opacity: 240, 63, 59;
     --color-background-white: 251, 251, 251;
+    --color-background-label: 243, 243, 243;
     --color-badge: 243, 243, 243;
     --color-button-accent: 240, 63, 59;
     --color-button-hover: 251, 251, 251;
@@ -15,8 +16,11 @@
     --color-button-muted-hover: transparent;
     --color-overlay: 11, 11, 11;
     --color-border-grey: 17, 16, 28;
+    --color-background-fullWhite: 255, 255, 255;
     --color-background-white-after: rgb(251, 251, 251);
     --color-text-inverted-theme-after: rgb(240, 63, 59);
+    --color-rating: 255, 197, 49;
+    --color-salary: 56, 205, 62;
   }
   .theme-blue {
     --color-text-base: 17, 16, 28;

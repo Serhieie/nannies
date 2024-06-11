@@ -7,4 +7,5 @@ export interface FrameProps {
   position?: string;
   children?: React.ReactNode;
   imageSrc?: string;
+  avaClass?: string;
 }

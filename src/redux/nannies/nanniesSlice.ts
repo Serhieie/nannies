@@ -1,11 +1,21 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { fetchNannies } from './nanniesOperations';
 import { initialStateNannies } from './nanniesInitialState';
+import { handleAddFavorite, handleRemoveFavorite } from './nanniesHandlers';
+import storage from 'redux-persist/lib/storage';
+import persistReducer from 'redux-persist/es/persistReducer';
+import { NanniesState } from './nannies.types';
 
 const nanniesSlice = createSlice({
   name: 'nannies',
   initialState: initialStateNannies,
-  reducers: {},
+  reducers: {
+    addFavorite: handleAddFavorite,
+    removeFavorite: handleRemoveFavorite,
+    setActive: (state, action) => {
+      state.activeNannie = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchNannies.pending, (state) => {
@@ -22,5 +32,18 @@ const nanniesSlice = createSlice({
       });
   },
 });
+
+const nanniesPersistConfig = {
+  key: 'nannies',
+  storage,
+  whitelist: ['favorites'],
+};
+
+export const persistedNanniesReducer = persistReducer<NanniesState>(
+  nanniesPersistConfig,
+  nanniesSlice.reducer
+);
+
+export const { addFavorite, setActive, removeFavorite } = nanniesSlice.actions;
 
 export default nanniesSlice.reducer;

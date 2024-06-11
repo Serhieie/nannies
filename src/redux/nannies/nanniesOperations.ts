@@ -1,15 +1,24 @@
-import { ref, get } from 'firebase/database';
-import { database } from '../../firebaseConfig/firebaseConfig';
+import { ref, get, query, limitToFirst } from 'firebase/database';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { database } from '../../firebaseConfig/firebaseConfig';
+import { Nanny } from './nannies.types';
+
+const nanniesRef = ref(database, '/');
 
 export const fetchNannies = createAsyncThunk(
   'nannies/fetchNannies',
-  async (_, { rejectWithValue }) => {
+  async (pageSize: number, { rejectWithValue }) => {
     try {
-      const rootRef = ref(database);
-      const snapshot = await get(rootRef);
+      const firstPageQuery = query(nanniesRef, limitToFirst(pageSize));
+      const snapshot = await get(firstPageQuery);
       if (snapshot.exists()) {
-        return snapshot.val();
+        const nannies: Nanny[] = [];
+        snapshot.forEach((childSnapshot) => {
+          const childData = childSnapshot.val();
+          const id = childSnapshot.key;
+          nannies.push({ id, ...childData });
+        });
+        return nannies;
       } else {
         throw new Error('Дані відсутні');
       }

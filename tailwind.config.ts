@@ -16,18 +16,22 @@ export default {
           secondary: withOpacity('--color-text-secondary'),
           inverted: withOpacity('--color-text-inverted'),
           theme: withOpacity('--color-text-inverted-theme'),
+          salary: withOpacity('--color-salary'),
         },
       },
       backgroundColor: {
         skin: {
           background: withOpacity('--color-background'),
           'background-opacity': withOpacity('--color-background-opacity'),
+          'background-label': withOpacity('--color-background-label'),
           'accent-button': withOpacity('--color-button-accent'),
           'accent-buttonHover': withOpacity('--color-button-accent-hover'),
           'muted-button': withOpacity('--color-button-muted'),
           'muted-button-hover': withOpacity('--color-button-muted-hover'),
           'background-white': withOpacity('--color-background-white'),
+          'background-fullWhite': withOpacity('--color-background-fullWhite'),
           overlay: withOpacity('--color-overlay'),
+          grey: withOpacity('--color-border-grey'),
         },
       },
       borderColor: {
@@ -41,6 +45,7 @@ export default {
         skin: {
           primary: withOpacity('--color-text-inverted-theme'),
           inverted: withOpacity('--color-background-white'),
+          rating: withOpacity('--color-rating'),
         },
       },
       stroke: {
