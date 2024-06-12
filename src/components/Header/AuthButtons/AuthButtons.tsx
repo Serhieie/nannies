@@ -1,41 +1,54 @@
-import { useState } from 'react';
 import { Button } from '../../Parts/Button/Button';
 import { useLocation } from 'react-router-dom';
 import { Modal } from '../../Modal/Modal';
 import RegisterForm from '../../AuthModals/RegistrationModal';
 import LoginForm from '../../AuthModals/LoginModal';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '../../../redux/store';
+import {
+  setIsLoginModalOpen,
+  setIsRegistrationModalOpen,
+} from '../../../redux/modals/modalsSlice';
+import { useModalsState } from '../../../hooks/useModalsState';
 
 export const AuthButtons: React.FC = () => {
-  const [isRegistrationOpen, setIsRegistrationOpen] = useState(false);
-  const [isLoginOpen, setIsLoginOpen] = useState(false);
+  const { isLoginModalOpen, isRegistrationModalOpen } = useModalsState();
+  const dispatch = useDispatch<AppDispatch>();
   const location = useLocation();
   const isHomePage = location.pathname === '/';
 
-  const toggleIsRegistrationOpen = () => {
-    setIsRegistrationOpen((state) => !state);
+  const isRegistrationOpen = () => {
+    dispatch(setIsRegistrationModalOpen(true));
   };
-  const toggleIsLoginOpen = () => {
-    setIsLoginOpen((state) => !state);
+  const isRegistrationClose = () => {
+    dispatch(setIsRegistrationModalOpen(false));
+  };
+
+  const isLoginOpen = () => {
+    dispatch(setIsLoginModalOpen(true));
+  };
+  const isLoginClose = () => {
+    dispatch(setIsLoginModalOpen(false));
   };
 
   return (
     <>
       <div
-        className={`md2:flex-row flex h-full w-full max-w-96 items-center gap-2 xs:flex-col xl:ml-10`}
+        className={`flex h-full w-full max-w-96 items-center gap-2 xs:flex-col md2:flex-row xl:ml-10`}
       >
         {isHomePage && (
           <>
             <Button
               text={'Log in'}
               type="button"
-              onClick={toggleIsLoginOpen}
+              onClick={isLoginOpen}
               primary={false}
               className="max-h-[48px] w-[124px] py-1 text-lg md:py-2"
             />{' '}
             <Button
               text={'Registration'}
               type="button"
-              onClick={toggleIsRegistrationOpen}
+              onClick={isRegistrationOpen}
               primary={true}
               className={`max-h-[48px] w-[168px] px-12 py-1 text-lg md:px-10 md:py-2`}
             />
@@ -45,16 +58,16 @@ export const AuthButtons: React.FC = () => {
       <Modal
         title="Log In"
         text="Welcome back! Please enter your credentials to access your account and continue your babysitter search."
-        onClose={toggleIsLoginOpen}
-        isOpen={isLoginOpen}
+        onClose={isLoginClose}
+        isOpen={isLoginModalOpen}
       >
         <LoginForm />
       </Modal>
       <Modal
         title="Registration"
         text="Thank you for your interest in our platform! In order to register, we need some information. Please provide us with the following information."
-        onClose={toggleIsRegistrationOpen}
-        isOpen={isRegistrationOpen}
+        onClose={isRegistrationClose}
+        isOpen={isRegistrationModalOpen}
       >
         <RegisterForm />
       </Modal>

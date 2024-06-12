@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { auth } from '../../firebaseConfig/firebaseConfig';
+import { toast } from 'react-toastify';
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -23,9 +24,16 @@ export const registerUser = createAsyncThunk<
       credentials.password
     );
 
-    console.log(userCredential.user.uid);
+    if (userCredential) {
+      toast.success('Registration success', {
+        position: 'bottom-right',
+      });
+    }
     return userCredential.user;
   } catch (error: any) {
+    toast.error('Registration failed', {
+      position: 'bottom-right',
+    });
     return thunkApi.rejectWithValue(error.message);
   }
 });
@@ -41,8 +49,16 @@ export const loginUser = createAsyncThunk<
       credentials.email,
       credentials.password
     );
+    if (userCredential.user) {
+      toast.success('Login success', {
+        position: 'bottom-right',
+      });
+    }
     return userCredential.user;
   } catch (error: any) {
+    toast.error('Login failed', {
+      position: 'bottom-right',
+    });
     return thunkApi.rejectWithValue(error.message);
   }
 });
@@ -52,7 +68,14 @@ export const logoutUser = createAsyncThunk<void, void, { rejectValue: string }>(
   async (_, thunkApi) => {
     try {
       await signOut(auth);
+
+      toast.warning('Logout success', {
+        position: 'bottom-right',
+      });
     } catch (error: any) {
+      toast.error('Logout failed', {
+        position: 'bottom-right',
+      });
       return thunkApi.rejectWithValue(error.message);
     }
   }

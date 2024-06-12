@@ -1,6 +1,5 @@
 import { Header } from '../../Header/Header';
 import { HomeTitle } from '../../Home/HomeTitle';
-
 import { Frame } from '../../Parts/Frame/Frame';
 
 const HomePage: React.FC = () => {

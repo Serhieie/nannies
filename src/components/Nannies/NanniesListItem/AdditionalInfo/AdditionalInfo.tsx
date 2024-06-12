@@ -3,10 +3,10 @@ import sprite from '../../../../assets/sprite.svg';
 
 export const AdditionalInfo: React.FC<AdditionalInfoProps> = ({ labels }) => {
   return (
-    <ul className="flex">
+    <ul className="flex flex-wrap gap-1">
       {labels.map((item, index) => (
-        <li className="flex" key={item.title}>
-          <span className="flex items-center gap-1 leading-[150%]">
+        <li className="flex gap-1 xs:flex-col md:flex-row" key={item.title}>
+          <span className="flex items-center gap-1 leading-[150%] xs:text-sm md:text-base">
             {item.title !== 'Price / 1 hour:' && (
               <svg
                 className={`mb-1 flex-shrink-0 transition-colors duration-300 ${item.title === 'Rating:' ? 'fill-skin-rating' : 'fill-transparent stroke-skin-base-text'}`}
@@ -19,14 +19,16 @@ export const AdditionalInfo: React.FC<AdditionalInfoProps> = ({ labels }) => {
             )}
             {item.title !== 'Location' && item.title}
             <span
-              className={`${item.title === 'Price / 1 hour:' ? 'text-skin-salary' : 'text-skin-base'}`}
+              className={`${item.title === 'Price / 1 hour:' ? 'text-skin-salary' : 'text-skin-base xs:text-sm md:text-base'}`}
             >
               {' '}
               {` ${item.value}`}
             </span>
           </span>
           {(index === 0 || index === 1) && (
-            <div className="bg-skin-grey mx-4 h-[94%] w-[1px] opacity-20"></div>
+            <div
+              className={`mx-4 bg-skin-grey opacity-20 xs:h-[1px] xs:w-[100%] md:h-[94%] md:w-[1px]`}
+            ></div>
           )}
         </li>
       ))}

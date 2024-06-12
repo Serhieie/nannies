@@ -10,12 +10,15 @@ import { logoutUser } from '../../../redux/user/userOperations';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../../redux/store';
 import { useUserState } from '../../../hooks/useUserState';
+import { useLocation } from 'react-router-dom';
 
 export const Menu: React.FC = () => {
   const [isNavOpen, setIsNavOpen] = useState<boolean>(false);
   const { isLoggedIn } = useUserState();
   const dispatch = useDispatch<AppDispatch>();
   const { isTablet, isMobile, isDesktop } = useMedia();
+  const location = useLocation();
+  const isHome = location.pathname === '/';
 
   const toggleNav = () => {
     setIsNavOpen((state) => !state);
@@ -26,7 +29,9 @@ export const Menu: React.FC = () => {
   };
 
   return (
-    <div className="relative flex w-full items-center xs:justify-center md:justify-end">
+    <div
+      className={`${isHome ? 'xs:justify-center md:justify-end' : 'xs:justify-center sm:justify-end'} relative flex w-full items-center`}
+    >
       <div className={`flex items-center`}>
         {!isDesktop && isLoggedIn && <UserInfo />}
         {!isLoggedIn && !isDesktop && <AuthButtons />}

@@ -6,7 +6,7 @@ export const Container: React.FC<ContainerProps> = ({
 }) => {
   return (
     <div
-      className={`mx-auto w-full xs:min-w-[300px] sm:max-w-[355px] md:max-w-[700px] lg:max-w-[960px] xl:max-w-[1184px] ${className} `}
+      className={`mx-auto w-full xs:min-w-[300px] xs:px-2 sm:max-w-[700px] sm:px-4 md:max-w-[980px] lg:max-w-[1040px] lg:px-0 xl:max-w-[1184px] ${className} `}
     >
       {children}
     </div>

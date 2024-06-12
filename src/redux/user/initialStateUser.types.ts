@@ -39,10 +39,10 @@ export interface UserState {
   email: string;
   token: string;
   error: string | null;
+  theme: string;
   isLoggedIn: boolean;
   isLoadingUser: boolean;
   avatar: string;
-  theme: string;
 }
 
 export type TokenDataReject = {

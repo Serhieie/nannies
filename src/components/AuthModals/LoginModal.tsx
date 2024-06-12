@@ -7,8 +7,15 @@ import { Button } from '../Parts/Button/Button';
 import { loginUser } from '../../redux/user/userOperations';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../redux/store';
-import { useNavigate } from 'react-router-dom';
-import { useNanniesState } from '../../hooks/useNannieState';
+import {
+  setIsLoginModalOpen,
+  setIsRegistrationModalOpen,
+} from '../../redux/modals/modalsSlice';
+
+interface LoginFormInputs {
+  email: string;
+  password: string;
+}
 
 const LoginForm = () => {
   const {
@@ -20,18 +27,21 @@ const LoginForm = () => {
     resolver: yupResolver(schema.validationLoginSchema),
   });
   const dispatch = useDispatch<AppDispatch>();
-  const { nannies } = useNanniesState();
-  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
 
-  const onSubmit = (data) => {
+  const onSubmit = (data: LoginFormInputs) => {
     dispatch(loginUser(data));
     reset();
-    if (nannies) navigate('/nannies');
+    dispatch(setIsLoginModalOpen(false));
+  };
+
+  const handleRegistrateClick = () => {
+    dispatch(setIsLoginModalOpen(false));
+    dispatch(setIsRegistrationModalOpen(true));
   };
 
   return (
@@ -44,7 +54,7 @@ const LoginForm = () => {
       <div className="flex flex-col gap-[18px]">
         <div className="relative">
           <input
-            className="border-skin-grey placeholder-skin-base focus:ring-skin-background h-[52px] w-full rounded-xl border border-opacity-10 bg-skin-background-white px-[18px] py-3 font-normal text-skin-base placeholder:font-normal focus:outline-none"
+            className="placeholder-skin-base focus:ring-skin-background h-[52px] w-full rounded-xl border border-skin-grey border-opacity-10 bg-skin-background-white px-[18px] py-3 font-normal text-skin-base placeholder:font-normal focus:outline-none"
             {...register('email', { required: true })}
             type="email"
             placeholder="Enter your email"
@@ -58,7 +68,7 @@ const LoginForm = () => {
 
         <div className="relative">
           <input
-            className="border-skin-grey placeholder-skin-base focus:ring-skin-background h-[52px] w-full rounded-xl border border-opacity-10 bg-skin-background-white px-[18px] py-3 font-normal text-skin-base placeholder:font-normal focus:outline-none"
+            className="placeholder-skin-base focus:ring-skin-background h-[52px] w-full rounded-xl border border-skin-grey border-opacity-10 bg-skin-background-white px-[18px] py-3 font-normal text-skin-base placeholder:font-normal focus:outline-none"
             {...register('password', {
               required: true,
               minLength: 8,
@@ -79,7 +89,7 @@ const LoginForm = () => {
           >
             {showPassword ? (
               <svg
-                className="stroke-skin-base-text h-5 w-5 fill-transparent"
+                className="h-5 w-5 fill-transparent stroke-skin-base-text"
                 xmlns="http://www.w3.org/2000/svg"
                 width="30"
                 height="30"
@@ -88,7 +98,7 @@ const LoginForm = () => {
               </svg>
             ) : (
               <svg
-                className="fill:none stroke-skin-base-text h-5 w-5 fill-transparent"
+                className="fill:none h-5 w-5 fill-transparent stroke-skin-base-text"
                 xmlns="http://www.w3.org/2000/svg"
                 width="30"
                 height="30"
@@ -98,6 +108,16 @@ const LoginForm = () => {
             )}
           </button>
         </div>
+      </div>
+      <div className="mt-2 flex gap-4">
+        Have no account?{' '}
+        <button
+          onClick={handleRegistrateClick}
+          type="button"
+          className="text-skin-theme"
+        >
+          Registrate
+        </button>
       </div>
       <Button
         className="mt-10 cursor-pointer rounded-[30px] border border-transparent border-opacity-100 py-4 text-sm font-bold text-skin-inverted transition-all duration-300 hover:border-skin-primary hover:bg-opacity-40"

@@ -10,6 +10,7 @@ export const Modal: React.FC<ModalProps> = ({
   children,
   title,
   text,
+  textClassName,
 }) => {
   const overlayStyles = `fixed top-0 left-0 right-0 bottom-0 bg-skin-overlay
    bg-opacity-40 flex justify-center items-center z-50`;
@@ -32,7 +33,7 @@ export const Modal: React.FC<ModalProps> = ({
         type="button"
       >
         <svg
-          className="stroke-skin-base-text absolute h-8 w-8 fill-transparent"
+          className="absolute h-8 w-8 fill-transparent stroke-skin-base-text"
           xmlns="http://www.w3.org/2000/svg"
           width="16"
           height="16"
@@ -43,7 +44,11 @@ export const Modal: React.FC<ModalProps> = ({
       <div className="w-full xl:max-w-[446px]">
         {' '}
         <h2 className="mb-5 xs:text-2xl sm:text-3xl xl:text-4xl">{title}</h2>
-        <p className="font-normal leading-[125%] text-skin-secondary xs:text-sm xl:text-base">
+        <p
+          className={`font-normal leading-[125%] text-skin-secondary ${
+            textClassName ? `${textClassName}` : 'xs:text-sm xl:text-base'
+          }`}
+        >
           {text}
         </p>
       </div>
