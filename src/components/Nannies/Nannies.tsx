@@ -15,9 +15,12 @@ import {
   setIsLoginPopUpOpen,
 } from '../../redux/modals/modalsSlice';
 import { useModalsState } from '../../hooks/useModalsState';
+import { AppointmentModal } from '../AppointmentModal/AppointmentModa';
+import { useNanniesState } from '../../hooks/useNannieState';
 
 export const Nannies: React.FC<NanniesProps> = ({ nannies }) => {
   const [perPage, setPerPage] = useState(3);
+  const { activeNannie } = useNanniesState();
   const { isLoginPopUpOpen, isAppointmentOpen } = useModalsState();
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
@@ -49,8 +52,6 @@ export const Nannies: React.FC<NanniesProps> = ({ nannies }) => {
   const closeIsAppointmentOpen = () => {
     dispatch(setIsAppointmentOpen(false));
   };
-
-  console.log(nannies);
 
   return (
     <Container>
@@ -85,7 +86,9 @@ export const Nannies: React.FC<NanniesProps> = ({ nannies }) => {
         text="Arranging a meeting with a caregiver for your child is the first step to creating a safe and comfortable environment. Fill out the form below so we can match you with the perfect care partner."
         isOpen={isAppointmentOpen}
         onClose={closeIsAppointmentOpen}
-      />
+      >
+        <AppointmentModal nanny={activeNannie} />
+      </Modal>
     </Container>
   );
 };

@@ -1,6 +1,7 @@
 @import 'normalize.css';
 @import './fonts.css';
 @import './rootColors.css';
+@import './datePicker.css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

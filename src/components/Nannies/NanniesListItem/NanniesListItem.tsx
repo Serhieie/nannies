@@ -11,6 +11,7 @@ import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../../redux/store';
 import { useMedia } from '../../../hooks/useMedia';
 import { FavoriteButton } from './FavoriteButton/FavoriteButton';
+import { setActive } from '../../../redux/nannies/nanniesSlice';
 
 export const NanniesListItem: React.FC<NanniesListItemProps> = ({ nanny }) => {
   const [isReadMoreOpen, setIsReadMoreOpen] = useState(false);
@@ -23,6 +24,7 @@ export const NanniesListItem: React.FC<NanniesListItemProps> = ({ nanny }) => {
   };
 
   const openIsAppointmentOpen = () => {
+    dispatch(setActive(nanny));
     dispatch(setIsAppointmentOpen(true));
   };
 

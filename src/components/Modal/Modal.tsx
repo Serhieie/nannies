@@ -17,7 +17,7 @@ export const Modal: React.FC<ModalProps> = ({
   const modalStyles = `${isOpen ? 'scale-100' : 'scale-75'}
    absolute flex flex-col gap-10 transition-all duration-500 rounded-[30px]
     top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white  xs:p-6 sm:p-8
-    lg:p-16 shadow-lg xs:min-w-[312px] sm:min-w-[356px]`;
+    lg:p-16 shadow-lg xs:min-w-[312px] sm:min-w-[356px]   `;
 
   return (
     <ReactModal
@@ -41,7 +41,7 @@ export const Modal: React.FC<ModalProps> = ({
           <use xlinkHref={`${sprite}#icon-close`} />
         </svg>
       </button>
-      <div className="w-full xl:max-w-[446px]">
+      <div className="w-full xl:max-w-[500px]">
         {' '}
         <h2 className="mb-5 xs:text-2xl sm:text-3xl xl:text-4xl">{title}</h2>
         <p

@@ -4,7 +4,6 @@ import { database } from '../../firebaseConfig/firebaseConfig';
 import { Nanny } from './nannies.types';
 
 const nanniesRef = ref(database, '/');
-
 export const fetchNannies = createAsyncThunk(
   'nannies/fetchNannies',
   async (pageSize: number, { rejectWithValue }) => {

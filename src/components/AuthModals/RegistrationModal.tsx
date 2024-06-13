@@ -47,7 +47,7 @@ const RegisterForm = () => {
       noValidate
       autoComplete="off"
     >
-      <div className="relative">
+      <label className="relative">
         <input
           className="placeholder-skin-base focus:ring-skin-background h-[52px] w-full rounded-xl border border-skin-grey border-opacity-10 px-[18px] py-3 font-normal text-skin-base placeholder:font-normal focus:outline-none"
           {...register('name', { required: true })}
@@ -59,9 +59,9 @@ const RegisterForm = () => {
             {errors.name.message}
           </p>
         )}
-      </div>
+      </label>
 
-      <div className="relative">
+      <label className="relative">
         <input
           className="placeholder-skin-base focus:ring-skin-background h-[52px] w-full rounded-xl border border-skin-grey border-opacity-10 px-[18px] py-3 font-normal text-skin-base placeholder:font-normal focus:outline-none"
           {...register('email', { required: true })}
@@ -73,9 +73,9 @@ const RegisterForm = () => {
             {errors.email.message}
           </p>
         )}
-      </div>
+      </label>
 
-      <div className="relative">
+      <label className="relative">
         <input
           className="placeholder-skin-base focus:ring-skin-background h-[52px] w-full rounded-xl border border-skin-grey border-opacity-10 px-[18px] py-3 font-normal text-skin-base placeholder:font-normal focus:outline-none"
           {...register('password', { required: true })}
@@ -112,7 +112,7 @@ const RegisterForm = () => {
             </svg>
           )}
         </button>
-      </div>
+      </label>
 
       <Button
         className="mt-10 cursor-pointer rounded-[30px] border border-transparent py-4 text-sm font-bold text-skin-inverted transition-colors duration-300 hover:border-skin-primary hover:bg-opacity-40"

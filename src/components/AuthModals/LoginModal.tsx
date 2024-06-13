@@ -52,7 +52,7 @@ const LoginForm = () => {
       autoComplete="off"
     >
       <div className="flex flex-col gap-[18px]">
-        <div className="relative">
+        <label className="relative">
           <input
             className="placeholder-skin-base focus:ring-skin-background h-[52px] w-full rounded-xl border border-skin-grey border-opacity-10 bg-skin-background-white px-[18px] py-3 font-normal text-skin-base placeholder:font-normal focus:outline-none"
             {...register('email', { required: true })}
@@ -64,9 +64,9 @@ const LoginForm = () => {
               {errors.email.message}
             </p>
           )}
-        </div>
+        </label>
 
-        <div className="relative">
+        <label className="relative">
           <input
             className="placeholder-skin-base focus:ring-skin-background h-[52px] w-full rounded-xl border border-skin-grey border-opacity-10 bg-skin-background-white px-[18px] py-3 font-normal text-skin-base placeholder:font-normal focus:outline-none"
             {...register('password', {
@@ -107,7 +107,7 @@ const LoginForm = () => {
               </svg>
             )}
           </button>
-        </div>
+        </label>
       </div>
       <div className="mt-2 flex gap-4">
         Have no account?{' '}
