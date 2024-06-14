@@ -25,7 +25,8 @@ export const Modal: React.FC<ModalProps> = ({
 
   const modalClasses = clsx(
     'absolute flex flex-col gap-10 transition-all duration-500 rounded-[30px]',
-    'bg-white xs:p-2 xs:pt-12 sm:p-8 lg:p-16 shadow-lg w-[96%] max-w-[600px]',
+    ' bg-skin-background-white xs:p-2 xs:pt-12 sm:p-8 lg:p-16 shadow-lg w-[96%]',
+    'max-w-[600px]',
     {
       'scale-100': isOpen,
       'scale-75': !isOpen,
@@ -36,8 +37,8 @@ export const Modal: React.FC<ModalProps> = ({
   );
 
   const contentClasses = clsx('flex flex-col gap-10', {
-    'pr-6': isHeight && !regOrLog,
     'custom-scrollbar overflow-hidden overflow-y-auto': isHeight,
+    'pr-6': isHeight && !regOrLog,
   });
 
   const textClasses = clsx(

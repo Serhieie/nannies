@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import { PasswordVisibilityBtn } from '../PasswordVisiblityBtn/PasswordVisibilityBtn';
 import { InputProps } from './Input.types';
 import { FieldError } from 'react-hook-form';
@@ -28,7 +29,13 @@ export const Input: React.FC<InputProps> = ({
       htmlFor={id}
     >
       <input
-        className={`w-full rounded-[12px] border border-skin-grey border-opacity-20 px-[18px] py-[15px] leading-[125%] placeholder:font-normal placeholder:text-skin-base ${inputClasses}`}
+        className={clsx(
+          `active:outline-skin-primary focus:outline-skin-primary w-full rounded-[12px]`,
+          `border border-skin-grey border-opacity-20 px-[18px] py-[15px] leading-[125%]`,
+          `placeholder:font-normal placeholder:text-skin-base hover:border-skin-primary`,
+          `bg-skin-background-white focus:border-skin-primary active:border-skin-primary`,
+          ` ${inputClasses}`
+        )}
         id={id}
         placeholder={placeholder}
         type={type}

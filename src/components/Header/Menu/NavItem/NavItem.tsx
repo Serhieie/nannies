@@ -14,7 +14,7 @@ export const NavItem: React.FC<NavItemProps> = ({ text, to }) => {
               : 'py-6 text-base'
           } px-2 font-normal leading-[125%] transition-all duration-300 focus:outline-white ${
             isActive
-              ? `${isMobile || isTablet ? `custom-after-right` : `xl:custom-after-bottom flex items-center`} `
+              ? `${isMobile || isTablet ? `custom-after-right` : `flex items-center xl:custom-after-bottom`} `
               : ''
           }`
         }

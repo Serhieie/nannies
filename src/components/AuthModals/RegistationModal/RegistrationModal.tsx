@@ -11,6 +11,7 @@ import { setIsRegistrationModalOpen } from '../../../redux/modals/modalsSlice';
 import { RegistrationFormInputs } from './RegistrationModal.types';
 import { registrationInputsConfig } from './registrationInputsConfig';
 import { Input } from '../../Parts/Input/Input';
+import clsx from 'clsx';
 
 const RegisterForm = () => {
   const {
@@ -57,7 +58,11 @@ const RegisterForm = () => {
         />
       ))}
       <Button
-        className="mt-10 cursor-pointer rounded-[30px] border border-transparent py-4 text-sm font-bold text-skin-inverted transition-colors duration-300 hover:border-skin-primary hover:bg-opacity-40"
+        className={clsx(
+          'mt-10 cursor-pointer rounded-[30px] border border-transparent py-4 text-sm',
+          'font-bold text-skin-inverted transition-colors duration-300',
+          'hover:border-skin-primary hover:bg-opacity-40'
+        )}
         type="submit"
         text={'Sign Up'}
       />

@@ -21,7 +21,9 @@ export const PopUpFilters: React.FC<PopUpFiltersProps> = ({
   return (
     <div
       className={clsx(
-        'absolute left-0 top-[112%] z-40 flex h-[244px] w-[226px] flex-col justify-center gap-3 rounded-[14px] bg-skin-background-white px-4 py-[14px] text-sm text-skin-base shadow-lg transition-all duration-300',
+        'absolute left-0 top-[112%] z-40 flex h-[244px] w-[226px] flex-col',
+        'justify-center gap-3 rounded-[14px] bg-skin-background-white px-4',
+        'py-[14px] text-sm text-skin-base shadow-lg transition-all duration-300',
         {
           'invisible scale-75 opacity-0': !isFiltersOpen,
           'visible z-40 scale-100 opacity-100': isFiltersOpen,
@@ -31,7 +33,14 @@ export const PopUpFilters: React.FC<PopUpFiltersProps> = ({
       {filters.map((filter) => (
         <span
           key={nanoid()}
-          className={`${chosedFilter === filter.title ? 'text-skin-base' : 'text-skin-secondary'} cursor-pointer text-lg font-normal leading-[111%] transition-colors duration-300 ease-in-out hover:text-skin-theme`}
+          className={clsx(
+            'cursor-pointer text-lg font-normal leading-[111%]',
+            'transition-colors duration-300 ease-in-out hover:text-skin-theme',
+            {
+              'text-skin-base': chosedFilter === filter.title,
+              'text-skin-secondary': chosedFilter !== filter.title,
+            }
+          )}
           onClick={() => handleChangeFilter(filter.title as FilterType)}
         >
           {filter.title}

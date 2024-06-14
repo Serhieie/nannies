@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import { ButtonProps } from './Button.types';
 
 export const Button: React.FC<ButtonProps> = ({
@@ -15,11 +16,17 @@ export const Button: React.FC<ButtonProps> = ({
       style={templateAreaStyle}
       type={type}
       onClick={onClick}
-      className={`${
-        primary
-          ? 'bg-skin-background hover:bg-skin-background-white hover:text-skin-theme'
-          : 'bg-skin-background-muted border border-skin-inverted border-opacity-40 text-skin-inverted hover:bg-skin-background hover:bg-opacity-40'
-      } flex h-[52px] w-full min-w-[124px] items-center justify-center rounded-[30px] transition-all duration-300 ${className}`}
+      className={clsx(
+        `flex h-[52px] w-full min-w-[124px] items-center justify-center`,
+        `rounded-[30px] transition-all duration-300 ${className}`,
+        {
+          'bg-skin-background hover:bg-skin-background-white': primary,
+          'hover:text-skin-theme': primary,
+          'bg-skin-background-muted border hover:bg-skin-background': !primary,
+          'border-opacity-40 text-skin-inverted hover:bg-opacity-40': !primary,
+          'border-skin-inverted': !primary,
+        }
+      )}
     >
       {text}
       {children}

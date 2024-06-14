@@ -83,7 +83,9 @@ export const Nannies: React.FC<NanniesProps> = ({ nannies }) => {
       </Modal>
       <Modal
         title={'Make an appointment with a babysitter'}
-        text="Arranging a meeting with a caregiver for your child is the first step to creating a safe and comfortable environment. Fill out the form below so we can match you with the perfect care partner."
+        text="Arranging a meeting with a caregiver for your child is the first
+         step to creating a safe and comfortable environment. Fill out the form
+          below so we can match you with the perfect care partner."
         isOpen={isAppointmentOpen}
         onClose={closeIsAppointmentOpen}
       >

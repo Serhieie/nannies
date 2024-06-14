@@ -1,5 +1,6 @@
 import { AdditionalInfoProps } from './AdditionalInfo.type';
 import sprite from '../../../../assets/sprite.svg';
+import clsx from 'clsx';
 
 export const AdditionalInfo: React.FC<AdditionalInfoProps> = ({ labels }) => {
   return (
@@ -9,7 +10,14 @@ export const AdditionalInfo: React.FC<AdditionalInfoProps> = ({ labels }) => {
           <span className="flex items-center gap-1 leading-[150%] xs:text-sm md:text-base">
             {item.title !== 'Price / 1 hour:' && (
               <svg
-                className={`mb-1 flex-shrink-0 transition-colors duration-300 ${item.title === 'Rating:' ? 'fill-skin-rating' : 'fill-transparent stroke-skin-base-text'}`}
+                className={clsx(
+                  `mb-1 flex-shrink-0 transition-colors duration-300`,
+                  {
+                    'fill-skin-rating': item.title === 'Rating:',
+                    'fill-transparent stroke-skin-base-text':
+                      item.title !== 'Rating:',
+                  }
+                )}
                 xmlns="http://www.w3.org/2000/svg"
                 width="20"
                 height="20"
@@ -19,7 +27,11 @@ export const AdditionalInfo: React.FC<AdditionalInfoProps> = ({ labels }) => {
             )}
             {item.title !== 'Location' && item.title}
             <span
-              className={`${item.title === 'Price / 1 hour:' ? 'text-skin-salary' : 'text-skin-base xs:text-sm md:text-base'}`}
+              className={`${
+                item.title === 'Price / 1 hour:'
+                  ? 'text-skin-salary'
+                  : 'text-skin-base xs:text-sm md:text-base'
+              }`}
             >
               {' '}
               {` ${item.value}`}

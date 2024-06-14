@@ -4,6 +4,7 @@ import { RiArrowDownSLine } from 'react-icons/ri';
 import { PopUpFilters } from './PopUpFilters/PopUpFilters';
 import { useSelector } from 'react-redux';
 import { selectFilter } from '../../redux/nannies/nanniesSelectors';
+import clsx from 'clsx';
 
 export const Filter: React.FC<FilterProps> = () => {
   const [isFiltersOpen, setIsFiltersOpen] = useState<boolean>(false);
@@ -15,7 +16,10 @@ export const Filter: React.FC<FilterProps> = () => {
     <div className="relative w-56 select-none">
       <span
         onClick={toggleOpenFilters}
-        className="flex h-12 w-56 cursor-pointer items-center justify-between rounded-[14px] bg-skin-background px-[18px] py-[12px] font-normal text-skin-inverted"
+        className={clsx(
+          'flex h-12 w-56 cursor-pointer items-center justify-between rounded-[14px]',
+          'bg-skin-background px-[18px] py-[12px] font-normal text-skin-inverted'
+        )}
       >
         {filter}
         <RiArrowDownSLine

@@ -11,6 +11,7 @@ import {
   appointmentDefaultValues,
   appointmentInputsConfig,
 } from '../appointmentInputCofig';
+import clsx from 'clsx';
 
 export const AppointmentForm = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -33,6 +34,7 @@ export const AppointmentForm = () => {
     <form
       className={`custom-scrollbar xs:custom-grid-xs sm2:custom-grid grid min-w-[292px] max-w-[600px]`}
       onSubmit={handleSubmit(onSubmit)}
+      autoComplete={'off'}
     >
       {appointmentInputsConfig.map(
         ({ id, type, placeholder, required, templateArea, labelClasses }) => (
@@ -51,7 +53,12 @@ export const AppointmentForm = () => {
       )}
       <label style={{ gridArea: 'comment' }} htmlFor="comment">
         <textarea
-          className="h-[116px] w-full resize-none rounded-[12px] border border-skin-grey border-opacity-20 px-[18px] py-[15px] leading-[125%] placeholder:font-normal placeholder:text-skin-base"
+          className={clsx(
+            'active:outline-skin-primary focus:outline-skin-primary h-[116px] w-full resize-none',
+            'rounded-[12px] border border-skin-grey border-opacity-20 bg-skin-background-white',
+            'px-[18px] py-[15px] leading-[125%] placeholder:font-normal placeholder:text-skin-base',
+            'hover:border-skin-primary focus:border-skin-primary active:border-skin-primary'
+          )}
           id="comment"
           placeholder="Comment"
           {...register('comment')}
@@ -72,7 +79,10 @@ export const AppointmentForm = () => {
         )}
       />
       <Button
-        className="mt-4 border border-transparent text-skin-inverted hover:border-skin-primary hover:border-opacity-40 hover:bg-skin-background-fullWhite"
+        className={clsx(
+          'mt-4 border border-transparent text-skin-inverted hover:border-skin-primary',
+          'hover:border-opacity-40 hover:bg-skin-background-fullWhite'
+        )}
         text="Send"
         type="submit"
         templateArea={true}

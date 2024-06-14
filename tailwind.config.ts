@@ -41,6 +41,13 @@ export default {
           grey: withOpacity('--color-border-grey'),
         },
       },
+      outlineColor: {
+        skin: {
+          primary: withOpacity('--color-text-inverted-theme'),
+          inverted: withOpacity('--color-background-white'),
+          grey: withOpacity('--color-border-grey'),
+        },
+      },
       fill: {
         skin: {
           primary: withOpacity('--color-text-inverted-theme'),

@@ -1,6 +1,7 @@
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import sprite from '../../../assets/sprite.svg';
+import clsx from 'clsx';
 
 export const TimePicker = ({ selected, onChange }) => {
   const startDate = new Date();
@@ -9,9 +10,12 @@ export const TimePicker = ({ selected, onChange }) => {
     <DatePicker
       selected={selected}
       onChange={onChange}
-      className={
-        'sm2:min-w-fit min-h-[52px] w-full rounded-[12px] border-[1px] border-skin-grey border-opacity-20 leading-[125%] placeholder:font-normal placeholder:text-skin-base'
-      }
+      className={clsx(
+        'sm2:min-w-fit active:outline-skin-primary focus:outline-skin-primary min-h-[52px]',
+        'w-full rounded-[12px] border-[1px] border-skin-grey border-opacity-20 leading-[125%]',
+        'placeholder:font-normal placeholder:text-skin-base hover:border-skin-primary',
+        'bg-skin-background-white focus:border-skin-primary active:border-skin-primary'
+      )}
       showIcon
       toggleCalendarOnIconClick
       showTimeSelect

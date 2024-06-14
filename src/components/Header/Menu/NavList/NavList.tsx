@@ -30,8 +30,7 @@ export const NavList: React.FC<NavListProps> = ({ onClose }) => {
       <ul
         className={clsx(
           'flex items-center justify-center gap-10 xs:w-[194px]',
-          'xl:flex-row',
-          'flex-col'
+          'flex-col xl:flex-row'
         )}
       >
         {links.map((link) =>

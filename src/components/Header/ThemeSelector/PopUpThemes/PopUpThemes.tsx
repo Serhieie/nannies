@@ -29,7 +29,9 @@ export const PopUpThemes: React.FC<PopUpThemesProps> = ({
   return (
     <div
       className={clsx(
-        'absolute right-0 top-20 z-40 flex h-32 w-28 flex-col justify-center gap-1.5 rounded-md border border-skin-primary bg-skin-background-white p-4 text-sm text-skin-base shadow-lg transition-all duration-300 xl:left-1 xl:top-14',
+        'absolute right-0 top-20 z-40 flex h-32 w-28 flex-col justify-center p-4',
+        'gap-1.5 rounded-md border border-skin-primary bg-skin-background-white',
+        'text-sm text-skin-base shadow-lg transition-all duration-300 xl:left-1 xl:top-14',
         {
           'invisible scale-75 opacity-0': !isThemePopUpOpen,
           'visible z-40 scale-100 opacity-100': isThemePopUpOpen,
@@ -39,7 +41,10 @@ export const PopUpThemes: React.FC<PopUpThemesProps> = ({
       {themes.map((theme) => (
         <span
           key={nanoid()}
-          className="cursor-pointer py-1 transition-colors duration-300 ease-in-out hover:text-skin-theme"
+          className={clsx(
+            'cursor-pointer py-1 transition-colors duration-300',
+            'ease-in-out hover:text-skin-theme'
+          )}
           onClick={() => handleChangeTheme(theme)}
         >
           {theme}

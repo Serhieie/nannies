@@ -31,7 +31,11 @@ export const FavoriteButton: React.FC<FavoriteButtonProps> = ({ nanny }) => {
       type="button"
     >
       <svg
-        className={`${isFavorite && isLoggedIn ? 'fill-skin-primary stroke-skin-primary' : 'fill-transparent stroke-skin-base-text'} transition-colors duration-300`}
+        className={`${
+          isFavorite && isLoggedIn
+            ? 'fill-skin-primary stroke-skin-primary'
+            : 'fill-transparent stroke-skin-base-text'
+        } transition-colors duration-300`}
         xmlns="http://www.w3.org/2000/svg"
         width="26"
         height="26"

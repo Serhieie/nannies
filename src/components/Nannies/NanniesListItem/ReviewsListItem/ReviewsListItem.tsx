@@ -1,12 +1,18 @@
 import { ReviewsListItemProps } from './ReviewsListItem.types';
 import sprite from '../../../../assets/sprite.svg';
+import clsx from 'clsx';
 
 export const ReviewsListItem: React.FC<ReviewsListItemProps> = ({ review }) => {
   const firstLetter = review.reviewer[0].toUpperCase();
   return (
     <li className="flex flex-col flex-wrap gap-4">
       <div className="flex flex-wrap gap-3">
-        <div className="flex h-11 w-11 items-center justify-center rounded-full bg-skin-background bg-opacity-20">
+        <div
+          className={clsx(
+            'flex h-11 w-11 items-center justify-center rounded-full',
+            'bg-skin-background bg-opacity-20'
+          )}
+        >
           <span className="mt-1 text-skin-theme">{firstLetter}</span>
         </div>
         <div>

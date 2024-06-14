@@ -13,6 +13,7 @@ import {
 import { Input } from '../../Parts/Input/Input';
 import { LoginFormInputs } from './LoginModal.types';
 import { loginInputsConfig } from './loginInputsConfig';
+import clsx from 'clsx';
 
 export const LoginForm = () => {
   const {
@@ -74,7 +75,11 @@ export const LoginForm = () => {
         </button>
       </div>
       <Button
-        className="mt-10 cursor-pointer rounded-[30px] border border-transparent border-opacity-100 py-4 text-sm font-bold text-skin-inverted transition-all duration-300 hover:border-skin-primary hover:bg-opacity-40"
+        className={clsx(
+          'mt-10 cursor-pointer rounded-[30px] border border-transparent border-opacity-100',
+          'py-4 text-sm font-bold text-skin-inverted transition-all duration-300',
+          'hover:border-skin-primary hover:bg-opacity-40'
+        )}
         type="submit"
         text={'Log In'}
       />

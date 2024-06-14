@@ -11,6 +11,7 @@ import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../../redux/store';
 import { useUserState } from '../../../hooks/useUserState';
 import { useLocation } from 'react-router-dom';
+import clsx from 'clsx';
 
 export const Menu: React.FC = () => {
   const [isNavOpen, setIsNavOpen] = useState<boolean>(false);
@@ -30,7 +31,10 @@ export const Menu: React.FC = () => {
 
   return (
     <div
-      className={`${isHome ? 'xs:justify-center md:justify-end' : 'xs:justify-center sm:justify-end'} relative flex w-full items-center`}
+      className={clsx(`relative flex w-full items-center xs:justify-center`, {
+        'md:justify-end': isHome,
+        'sm:justify-end': !isHome,
+      })}
     >
       <div className={`flex items-center`}>
         {!isDesktop && isLoggedIn && <UserInfo />}
