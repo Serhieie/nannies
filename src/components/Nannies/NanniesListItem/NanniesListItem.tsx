@@ -30,7 +30,7 @@ export const NanniesListItem: React.FC<NanniesListItemProps> = ({ nanny }) => {
 
   return (
     <>
-      <li className="relative flex flex-col gap-6 rounded-[30px] bg-skin-background-fullWhite p-6 xl:flex-row">
+      <li className="relative flex flex-col gap-6 rounded-[30px] bg-skin-background-fullWhite xs:p-4 sm:p-6 xl:flex-row">
         <div className="flex gap-4 xs:flex-col sm:flex-row">
           <div className="flex h-[120px] w-[120px] flex-shrink-0 items-center justify-center rounded-[30px] border-2 border-skin-primary border-opacity-20 p-3">
             <Frame

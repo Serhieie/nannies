@@ -1,6 +1,6 @@
 import { useMedia } from '../../hooks/useMedia';
 import { AppointmentModalProps } from './AppointmentModalPtops.types';
-import { FormPart } from './FormPart/FormPart';
+import { AppointmentForm } from './AppointmentForm/AppointmentForm';
 import { NannyName } from './NannyName/NannyName';
 
 export const AppointmentModal: React.FC<AppointmentModalProps> = ({
@@ -10,7 +10,7 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
   return (
     <div>
       {!isMobile && <NannyName nanny={nanny} />}
-      <FormPart />
+      <AppointmentForm />
     </div>
   );
 };

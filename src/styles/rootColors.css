@@ -19,6 +19,7 @@
     --color-background-fullWhite: 255, 255, 255;
     --color-background-white-after: rgb(251, 251, 251);
     --color-text-inverted-theme-after: rgb(240, 63, 59);
+    --color-scroll: 128, 128, 128;
     --color-rating: 255, 197, 49;
     --color-salary: 56, 205, 62;
   }

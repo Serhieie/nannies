@@ -72,6 +72,7 @@ export default {
     screens: {
       xs: '320px',
       sm: '375px',
+      sm2: '500px',
       md: '768px',
       md2: '950px',
       lg: '1200px',
@@ -103,6 +104,45 @@ export default {
           height: '8px',
           backgroundColor: 'var(--color-background-white-after)',
           borderRadius: '50%',
+        },
+        '.custom-scrollbar::-webkit-scrollbar': {
+          width: '8px',
+        },
+        '.custom-scrollbar::-webkit-scrollbar-track': {
+          background: 'rgba(var(--color-scroll), 0.2)',
+          borderRadius: '9999px',
+          height: '70%',
+        },
+        '.custom-scrollbar::-webkit-scrollbar-thumb': {
+          background: 'rgba(var(--color-scroll), 0.5)',
+          borderRadius: '9999px',
+        },
+        '.custom-scrollbar::-webkit-scrollbar-thumb:hover': {
+          background: 'rgba(var(--color-scroll), 0.9)',
+        },
+        '.custom-grid': {
+          gridTemplateAreas: `
+            "address tel"
+            "childAge datePicker"
+            "email email"
+            "parentName parentName"
+            "comment comment"
+            "button button"
+          `,
+          gridGap: '16px 8px',
+        },
+        '.custom-grid-xs': {
+          gridTemplateAreas: `
+            "address address"
+                 "tel tel"
+            "childAge childAge"
+            "datePicker datePicker"
+            "email email"
+            "parentName parentName"
+            "comment comment"
+            "button button"
+          `,
+          gridGap: '10px',
         },
       });
     },

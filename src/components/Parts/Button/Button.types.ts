@@ -5,4 +5,5 @@ export interface ButtonProps {
   children?: React.ReactNode;
   text?: string;
   primary?: boolean;
+  templateArea?: boolean;
 }

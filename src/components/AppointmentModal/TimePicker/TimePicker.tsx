@@ -10,16 +10,16 @@ export const TimePicker = ({ selected, onChange }) => {
       selected={selected}
       onChange={onChange}
       className={
-        'min-h-[52px] min-w-[292px] rounded-[12px] border-[1px] border-skin-grey border-opacity-20 px-[18px] py-4 leading-[125%] placeholder:font-normal placeholder:text-skin-base md:min-w-[246px]'
+        'sm2:min-w-fit min-h-[52px] w-full rounded-[12px] border-[1px] border-skin-grey border-opacity-20 leading-[125%] placeholder:font-normal placeholder:text-skin-base'
       }
       showIcon
       toggleCalendarOnIconClick
-      closeOnScroll={(e) => e.target === document}
       showTimeSelect
       showTimeSelectOnly
-      timeCaption="Time"
-      dateFormat="h:mm aa"
-      timeIntervals={15}
+      timeCaption="Meeting time"
+      dateFormat="HH : mm"
+      timeFormat={'HH  :  mm'}
+      timeIntervals={30}
       placeholderText="Booking date"
       calendarStartDay={1}
       startDate={startDate}

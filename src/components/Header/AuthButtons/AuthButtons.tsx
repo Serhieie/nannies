@@ -1,8 +1,8 @@
 import { Button } from '../../Parts/Button/Button';
 import { useLocation } from 'react-router-dom';
 import { Modal } from '../../Modal/Modal';
-import RegisterForm from '../../AuthModals/RegistrationModal';
-import LoginForm from '../../AuthModals/LoginModal';
+import RegisterForm from '../../AuthModals/RegistationModal/RegistrationModal';
+import { LoginForm } from '../../AuthModals/LoginModal/LoginModal';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../../redux/store';
 import {

@@ -7,9 +7,12 @@ export const Button: React.FC<ButtonProps> = ({
   className,
   children,
   text,
+  templateArea = false,
 }) => {
+  const templateAreaStyle = templateArea ? { gridArea: 'button' } : {};
   return (
     <button
+      style={templateAreaStyle}
       type={type}
       onClick={onClick}
       className={`${
