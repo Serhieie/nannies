@@ -12,6 +12,7 @@ import {
   ref as storageRef,
   uploadString,
   getDownloadURL,
+  deleteObject,
 } from 'firebase/storage';
 import { get, ref, set } from 'firebase/database';
 import { CredentialsRegistration, CustomUser } from './initialStateUser.types';
@@ -126,7 +127,6 @@ export const logoutUser = createAsyncThunk<void, void, { rejectValue: string }>(
   }
 );
 
-//оновлення
 export interface UserProfileCredentials {
   updatedName: string;
   photoURL?: File | string;
@@ -152,7 +152,7 @@ export const updateUserProfile = createAsyncThunk<
   try {
     const updatedUserData: UpdatedUserProfile = {
       name: credentials.updatedName,
-      photoURL: '', // Initialize as an empty string
+      photoURL: '',
     };
 
     if (credentials.updatedName) {
@@ -161,64 +161,65 @@ export const updateUserProfile = createAsyncThunk<
       });
     }
 
-    if (credentials.photoURL) {
-      if (credentials.photoURL instanceof File) {
-        const storageReference = storageRef(
-          storage,
-          `avatars/${user.uid}/${credentials.photoURL.name}`
-        );
-        const fileReader = new FileReader();
-        fileReader.readAsDataURL(credentials.photoURL);
-        const dataUrl = await new Promise<string>((resolve, reject) => {
-          fileReader.onload = (e) => {
-            resolve(e.target.result as string);
-          };
-          fileReader.onerror = (e) => {
-            reject(e);
-          };
-        });
-        await uploadString(storageReference, dataUrl, 'data_url');
+    // Get the current photoURL from the database
+    const userRef = ref(database, `users/${user.uid}`);
+    const snapshot = await get(userRef);
+    const currentPhotoURL = snapshot.val()?.photoURL || '';
 
-        const downloadURL = await getDownloadURL(storageReference);
-        const userReference = ref(database, `users/${user.uid}`);
-
-        await set(userReference, {
-          name: credentials.updatedName,
-          email: user.email,
-          photoURL: downloadURL,
-        });
-
-        updatedUserData.photoURL = downloadURL;
-
-        toast.success('Profile updated successfully', {
-          position: 'bottom-right',
-        });
-      } else if (credentials.photoURL === 'remove') {
-        const userReference = ref(database, `users/${user.uid}`);
-
-        await set(userReference, {
-          name: credentials.updatedName,
-          email: user.email,
-          photoURL: '',
-        });
-
-        updatedUserData.photoURL = '';
-
-        toast.success('Profile updated successfully', {
-          position: 'bottom-right',
-        });
-      } else {
-        const userReference = ref(database, `users/${user.uid}`);
-        await set(userReference, {
-          name: credentials.updatedName,
-          email: user.email,
-        });
-
-        toast.success('Profile updated successfully', {
-          position: 'bottom-right',
-        });
+    if (credentials.photoURL === 'delete') {
+      // Delete photoURL from storage and database
+      if (currentPhotoURL) {
+        const storageReference = storageRef(storage, currentPhotoURL);
+        await deleteObject(storageReference);
       }
+      await set(userRef, {
+        name: credentials.updatedName,
+        email: user.email,
+        photoURL: '',
+      });
+
+      updatedUserData.photoURL = '';
+    } else if (credentials.photoURL instanceof File) {
+      const storageReference = storageRef(
+        storage,
+        `avatars/${user.uid}/${credentials.photoURL.name}`
+      );
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(credentials.photoURL);
+      const dataUrl = await new Promise<string>((resolve, reject) => {
+        fileReader.onload = (e) => {
+          resolve(e.target.result as string);
+        };
+        fileReader.onerror = (e) => {
+          reject(e);
+        };
+      });
+      await uploadString(storageReference, dataUrl, 'data_url');
+
+      const downloadURL = await getDownloadURL(storageReference);
+
+      await set(userRef, {
+        name: credentials.updatedName,
+        email: user.email,
+        photoURL: downloadURL,
+      });
+
+      updatedUserData.photoURL = downloadURL;
+    } else {
+      await set(userRef, {
+        name: credentials.updatedName,
+        email: user.email,
+        photoURL: currentPhotoURL,
+      });
+
+      updatedUserData.photoURL = currentPhotoURL;
     }
+
+    toast.success('Profile updated successfully', {
+      position: 'bottom-right',
+    });
+
+    console.log(updatedUserData);
 
     return updatedUserData;
   } catch (error: any) {

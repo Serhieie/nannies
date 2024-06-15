@@ -29,11 +29,7 @@ export const Header: React.FC = () => {
       ></div>
       <div
         className={clsx(
-          'flex h-full w-full items-center justify-between xs:flex-col xs:py-2 md2:py-0 xl:gap-24',
-          {
-            'md:flex-row': isHome,
-            'sm:flex-row': !isHome,
-          }
+          'flex h-full w-full items-center justify-between xs:flex-col xs:py-2 md:flex-row md2:py-0 xl:gap-24'
         )}
       >
         <Logo />

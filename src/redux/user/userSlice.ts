@@ -49,9 +49,7 @@ const userSlice = createSlice({
         state.name = action.payload.displayName;
         state.email = action.payload.email || '';
         state.token = action.payload.uid;
-        state.photoURL = action.payload.photoURL
-          ? action.payload.photoURL
-          : state.photoURL;
+        state.photoURL = action.payload.photoURL ? action.payload.photoURL : '';
       })
       .addCase(loginUser.rejected, handleRejected)
       .addCase(logoutUser.pending, handlePending)
@@ -63,8 +61,9 @@ const userSlice = createSlice({
         (state, action: PayloadAction<UpdatedUserProfile>) => {
           state.isLoadingUser = false;
           state.name = action.payload.name ? action.payload.name : state.name;
-          state.photoURL = action.payload.photoURL;
-          state.error = null;
+          state.photoURL = action.payload.photoURL
+            ? action.payload.photoURL
+            : '';
         }
       )
       .addCase(updateUserProfile.rejected, handleRejected);

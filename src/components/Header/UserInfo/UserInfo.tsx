@@ -25,14 +25,14 @@ export const UserInfo: React.FC<UserInfoProps> = () => {
         <div
           onClick={toggleUserInfoModal}
           className={clsx(
-            'user-select-none relative flex max-w-52 cursor-pointer',
-            'items-center gap-3 xs:mx-0 xl:mx-10'
+            'user-select-none max-w-92 relative flex cursor-pointer',
+            'flex-shrink-0 items-center gap-3 xs:mx-0 xl:mx-10'
           )}
         >
           <Frame
             imageSrc={photoURL && photoURL}
             border="rounded-[6px] overflow-hidden"
-            avaClass="w-10 h-10 object-cover object-center"
+            avaClass="w-10 h-10 object-cover object-center flex-shrink-0"
           />
 
           <p className="flex-shrink-0 text-base font-semibold leading-[111%] text-skin-inverted md:text-[18px]">

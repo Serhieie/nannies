@@ -13,7 +13,9 @@ import Upload from '../Upload/Upload';
 
 export const UserInfoForm = () => {
   const { name, photoURL, isLoading } = useUserState();
-  const [previewPhotoURL, setPreviewPhotoURL] = useState<string>(photoURL);
+  const [previewPhotoURL, setPreviewPhotoURL] = useState<string | undefined>(
+    photoURL
+  );
   const dispatch = useDispatch<AppDispatch>();
 
   const defaultValues = useMemo(
@@ -68,13 +70,12 @@ export const UserInfoForm = () => {
       setValue('photoURL', file);
     } else {
       setPreviewPhotoURL(photoURL);
-      setValue('photoURL', '');
     }
   };
 
   const clearAva = () => {
     setPreviewPhotoURL('');
-    setValue('photoURL', 'remove');
+    setValue('photoURL', 'delete');
   };
 
   return (
