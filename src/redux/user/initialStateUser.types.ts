@@ -42,7 +42,7 @@ export interface UserState {
   theme: string;
   isLoggedIn: boolean;
   isLoadingUser: boolean;
-  avatar: string;
+  photoURL: string;
 }
 
 export type TokenDataReject = {
@@ -64,4 +64,16 @@ export interface CredentialsRegistration {
   name: string;
   email: string;
   password: string;
+}
+
+export interface updateUserStateAction {
+  name: string;
+  avatar: string;
+}
+
+export interface CustomUser {
+  uid: string;
+  displayName: string | null;
+  email: string | null;
+  photoURL: string | null;
 }

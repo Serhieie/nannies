@@ -7,5 +7,6 @@ export const getIsLoadingUser = (state: RootState): boolean =>
   state.user.isLoadingUser;
 export const getToken = (state: RootState): string | null => state.user.token;
 export const getTheme = (state: RootState): string => state.user.theme;
-export const getAvatar = (state: RootState): string => state.user.avatar;
+export const getName = (state: RootState): string => state.user.name;
+export const getAvatar = (state: RootState): string => state.user.photoURL;
 export const getLogedIn = (state: RootState): boolean => state.user.isLoggedIn;

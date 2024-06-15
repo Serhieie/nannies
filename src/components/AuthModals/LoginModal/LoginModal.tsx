@@ -14,6 +14,7 @@ import { Input } from '../../Parts/Input/Input';
 import { LoginFormInputs } from './LoginModal.types';
 import { loginInputsConfig } from './loginInputsConfig';
 import clsx from 'clsx';
+import { useUserState } from '../../../hooks/useUserState';
 
 export const LoginForm = () => {
   const {
@@ -24,6 +25,7 @@ export const LoginForm = () => {
   } = useForm({
     resolver: yupResolver(schema.validationLoginSchema),
   });
+  const { isLoading } = useUserState();
   const dispatch = useDispatch<AppDispatch>();
   const [showPassword, setShowPassword] = useState(false);
 
@@ -81,7 +83,7 @@ export const LoginForm = () => {
           'hover:border-skin-primary hover:bg-opacity-40'
         )}
         type="submit"
-        text={'Log In'}
+        text={`${isLoading ? 'Loading...' : 'Log In'}`}
       />
     </form>
   );

@@ -3,7 +3,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { database } from '../../firebaseConfig/firebaseConfig';
 import { Nanny } from './nannies.types';
 
-const nanniesRef = ref(database, '/');
+const nanniesRef = ref(database, '/nannies');
 export const fetchNannies = createAsyncThunk(
   'nannies/fetchNannies',
   async (pageSize: number, { rejectWithValue }) => {

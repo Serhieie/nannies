@@ -8,7 +8,11 @@ export const handleRejected = (
   state: UserState,
   action: { payload: string | undefined }
 ): UserState => {
-  return { ...state, error: action.payload || 'error', isLoadingUser: false };
+  return {
+    ...state,
+    error: action.payload || 'error',
+    isLoadingUser: false,
+  };
 };
 
 export const handleLogoutFulfilled = (state: UserState): UserState => {
@@ -16,6 +20,8 @@ export const handleLogoutFulfilled = (state: UserState): UserState => {
     ...state,
     isLoadingUser: false,
     isLoggedIn: false,
+    photoURL: '',
+    name: '',
     email: '',
     token: '',
     error: null,

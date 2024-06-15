@@ -16,7 +16,10 @@ export const Modal: React.FC<ModalProps> = ({
 }) => {
   const { isHeight } = useMedia();
   const regOrLog =
-    title === 'Log In' || title === 'Registration' || title === 'Hello';
+    title === 'Log In' ||
+    title === 'Registration' ||
+    title === 'Hello' ||
+    title === 'Update user profile';
 
   const overlayClasses = clsx(
     'fixed top-0 left-0 right-0 bottom-0 bg-skin-overlay bg-opacity-40 flex ',

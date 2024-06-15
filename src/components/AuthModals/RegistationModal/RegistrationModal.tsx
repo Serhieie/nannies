@@ -12,6 +12,7 @@ import { RegistrationFormInputs } from './RegistrationModal.types';
 import { registrationInputsConfig } from './registrationInputsConfig';
 import { Input } from '../../Parts/Input/Input';
 import clsx from 'clsx';
+import { useUserState } from '../../../hooks/useUserState';
 
 const RegisterForm = () => {
   const {
@@ -23,6 +24,7 @@ const RegisterForm = () => {
     resolver: yupResolver(schema.validationRegisterSchema),
   });
   const [showPassword, setShowPassword] = useState(false);
+  const { isLoading } = useUserState();
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
 
@@ -64,7 +66,7 @@ const RegisterForm = () => {
           'hover:border-skin-primary hover:bg-opacity-40'
         )}
         type="submit"
-        text={'Sign Up'}
+        text={`${isLoading ? 'Loading...' : 'Sign Up'}`}
       />
     </form>
   );

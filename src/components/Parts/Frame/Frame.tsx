@@ -47,10 +47,10 @@ export const Frame: React.FC<FrameProps> = ({
         />
       ) : (
         <svg
-          className="fill-skin-primary transition-colors duration-300 md:h-10 md:w-10"
+          className="mx-auto fill-skin-primary transition-colors duration-300 md:h-10 md:w-10"
           xmlns="http://www.w3.org/2000/svg"
-          width="30"
-          height="30"
+          width={30}
+          height={30}
         >
           <use xlinkHref={`${sprite}#icon-image`} />
         </svg>

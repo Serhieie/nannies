@@ -6,4 +6,5 @@ export interface ButtonProps {
   text?: string;
   primary?: boolean;
   templateArea?: boolean;
+  disabled?: boolean;
 }

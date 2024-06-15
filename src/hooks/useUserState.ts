@@ -7,6 +7,7 @@ import {
   getTheme,
   getAvatar,
   getUserState,
+  getName,
 } from '../redux/user/userSelectors';
 import { UserState } from '../redux/user/initialStateUser.types';
 
@@ -16,8 +17,9 @@ export interface useAuthReturn {
   isLoading: boolean;
   error: null | string;
   token: string | null;
-  avatar: string;
+  photoURL: string;
   theme: string;
+  name: string;
 }
 
 export const useUserState = (): useAuthReturn => {
@@ -25,7 +27,8 @@ export const useUserState = (): useAuthReturn => {
   const isLoading: boolean = useSelector(getIsLoadingUser);
   const error: null | string = useSelector(getError);
   const token: string | null = useSelector(getToken);
-  const avatar: string = useSelector(getAvatar);
+  const photoURL: string = useSelector(getAvatar);
+  const name: string = useSelector(getName);
   const theme: string = useSelector(getTheme);
   const userState: UserState = useSelector(getUserState);
 
@@ -33,9 +36,10 @@ export const useUserState = (): useAuthReturn => {
     theme,
     isLoggedIn,
     isLoading,
+    name,
     token,
     error,
-    avatar,
+    photoURL,
     userState,
   };
 };

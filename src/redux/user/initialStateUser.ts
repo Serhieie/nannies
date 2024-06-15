@@ -8,5 +8,5 @@ export const initialStateUser: UserState = {
   error: null,
   isLoggedIn: false,
   isLoadingUser: false,
-  avatar: '',
+  photoURL: '',
 };
