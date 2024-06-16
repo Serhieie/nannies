@@ -1,3 +1,4 @@
+import React, { useEffect, useRef } from 'react';
 import { nanoid } from '@reduxjs/toolkit';
 import { clsx } from 'clsx';
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,9 +11,33 @@ import { FilterType } from 'filters/filters.types';
 
 export const PopUpFilters: React.FC<PopUpFiltersProps> = ({
   isFiltersOpen,
+  toggleOpenFilters,
 }) => {
   const dispatch = useDispatch<AppDispatch>();
   const chosedFilter = useSelector(selectFilter);
+  const popUpRef = useRef<HTMLDivElement>(null);
+
+  //close by click
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        popUpRef.current &&
+        !popUpRef.current.contains(event.target as Node)
+      ) {
+        toggleOpenFilters();
+      }
+    };
+
+    if (isFiltersOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    } else {
+      document.removeEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isFiltersOpen, toggleOpenFilters]);
 
   const handleChangeFilter = (filter: FilterType) => {
     dispatch(setFilter(filter));
@@ -20,6 +45,7 @@ export const PopUpFilters: React.FC<PopUpFiltersProps> = ({
 
   return (
     <div
+      ref={popUpRef}
       className={clsx(
         'absolute left-0 top-[112%] z-40 flex h-[244px] w-[226px] flex-col',
         'justify-center gap-3 rounded-[14px] bg-skin-background-white px-4',

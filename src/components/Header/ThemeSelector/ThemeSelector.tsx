@@ -38,7 +38,10 @@ export const ThemeSelector: React.FC = () => {
           } transition-stroke transition-transform`}
         />
       </span>
-      <PopUpThemes isThemePopUpOpen={isThemePopUpOpen} />
+      <PopUpThemes
+        toggleOpenTheme={toggleOpenTheme}
+        isThemePopUpOpen={isThemePopUpOpen}
+      />
     </div>
   );
 };

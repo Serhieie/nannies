@@ -16,6 +16,7 @@ import {
 } from '../../redux/modals/modalsSlice';
 import { useModalsState, useNanniesState } from '../../hooks';
 import { AppointmentModal } from '../AppointmentModal/AppointmentModa';
+import clsx from 'clsx';
 
 export const Nannies: React.FC<NanniesProps> = ({ nannies }) => {
   const { activeNannie, total } = useNanniesState();
@@ -61,7 +62,10 @@ export const Nannies: React.FC<NanniesProps> = ({ nannies }) => {
           <NanniesList nannies={nannies} />
           {!isFavoritesPage && showLoadMore && (
             <Button
-              className="mx-auto mt-16 max-w-[160px] text-skin-inverted"
+              className={clsx(
+                'mx-auto mt-16 max-w-[160px] border border-transparent text-skin-inverted',
+                'hover:border-skin-primary'
+              )}
               text="Load More"
               type="button"
               onClick={loadMore}

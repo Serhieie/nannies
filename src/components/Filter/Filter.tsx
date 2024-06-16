@@ -27,7 +27,10 @@ export const Filter: React.FC = () => {
           size={24}
         />
       </span>
-      <PopUpFilters isFiltersOpen={isFiltersOpen} />
+      <PopUpFilters
+        toggleOpenFilters={toggleOpenFilters}
+        isFiltersOpen={isFiltersOpen}
+      />
     </div>
   );
 };
