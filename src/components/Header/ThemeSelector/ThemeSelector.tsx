@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { RiArrowDownSLine } from 'react-icons/ri';
 import { PopUpThemes } from './PopUpThemes/PopUpThemes';
-import { useMedia } from '../../../hooks/useMedia';
+import { useMedia } from '@/hooks';
 import clsx from 'clsx';
 
-export const ThemeSelector = () => {
+export const ThemeSelector: React.FC = () => {
   const [isThemePopUpOpen, setIsThemePopUpOpen] = useState(false);
   const { isMobile, isTablet } = useMedia();
 

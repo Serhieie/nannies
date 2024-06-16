@@ -1,7 +1,7 @@
 import ReactModal from 'react-modal';
-import sprite from '../../assets/sprite.svg';
+import sprite from 'assets/sprite.svg';
 import { ModalProps } from './Modal.types';
-import { useMedia } from '../../hooks/useMedia';
+import { useMedia } from '@/hooks';
 import clsx from 'clsx';
 
 ReactModal.setAppElement('#root-modal');

@@ -35,7 +35,7 @@ export interface LoginResponse {
 }
 
 export interface UserState {
-  name: string;
+  name: string | null;
   email: string;
   token: string;
   error: string | null;

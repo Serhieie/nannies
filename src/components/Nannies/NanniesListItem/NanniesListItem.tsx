@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { getNannyInfo } from '../../../helpers/getNannyInfo';
+import { getNannyInfo } from '../../../helpers';
 import { Frame } from '../../Parts/Frame/Frame';
 import { LabelList } from './LabelList/LabelList';
 import { NanniesListItemProps } from './NanniesListItem.types';
@@ -9,7 +9,7 @@ import { ReadMorePart } from './ReadMorePart/ReadMorePart';
 import { setIsAppointmentOpen } from '../../../redux/modals/modalsSlice';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../../redux/store';
-import { useMedia } from '../../../hooks/useMedia';
+import { useMedia } from '../../../hooks';
 import { FavoriteButton } from './FavoriteButton/FavoriteButton';
 import { setActive } from '../../../redux/nannies/nanniesSlice';
 import clsx from 'clsx';

@@ -1,14 +1,10 @@
 import { useDispatch } from 'react-redux';
-import sprite from '../../../../assets/sprite.svg';
-import { useNanniesState } from '../../../../hooks/useNannieState';
+import sprite from 'assets/sprite.svg';
+import { useNanniesState, useUserState } from '@/hooks';
 import { FavoriteButtonProps } from './Favorite.types';
-import {
-  addFavorite,
-  removeFavorite,
-} from '../../../../redux/nannies/nanniesSlice';
-import { AppDispatch } from '../../../../redux/store';
-import { useUserState } from '../../../../hooks/useUserState';
-import { setIsLoginPopUpOpen } from '../../../../redux/modals/modalsSlice';
+import { addFavorite, removeFavorite } from 'nannies/nanniesSlice';
+import { AppDispatch } from '@/redux/store';
+import { setIsLoginPopUpOpen } from 'modalsState/modalsSlice';
 
 export const FavoriteButton: React.FC<FavoriteButtonProps> = ({ nanny }) => {
   const { favorites } = useNanniesState();

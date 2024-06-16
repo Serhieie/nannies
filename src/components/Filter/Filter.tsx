@@ -1,24 +1,24 @@
 import { useState } from 'react';
-import { FilterProps } from './Filter.types';
 import { RiArrowDownSLine } from 'react-icons/ri';
 import { PopUpFilters } from './PopUpFilters/PopUpFilters';
 import { useSelector } from 'react-redux';
-import { selectFilter } from '../../redux/nannies/nanniesSelectors';
+import { selectFilter } from 'nannies/nanniesSelectors';
 import clsx from 'clsx';
 
-export const Filter: React.FC<FilterProps> = () => {
+export const Filter: React.FC = () => {
   const [isFiltersOpen, setIsFiltersOpen] = useState<boolean>(false);
   const filter = useSelector(selectFilter);
   const toggleOpenFilters = () => {
     setIsFiltersOpen((state) => !state);
   };
   return (
-    <div className="relative w-56 select-none">
+    <div className={clsx('relative w-56 select-none')}>
       <span
         onClick={toggleOpenFilters}
         className={clsx(
           'flex h-12 w-56 cursor-pointer items-center justify-between rounded-[14px]',
-          'bg-skin-background px-[18px] py-[12px] font-normal text-skin-inverted'
+          'bg-skin-background px-[18px] py-[12px] font-normal text-skin-inverted',
+          'transition-all duration-300 hover:bg-opacity-95'
         )}
       >
         {filter}

@@ -1,4 +1,4 @@
-import { Nanny } from '../redux/nannies/nannies.types';
+import { Nanny } from 'nannies/nannies.types';
 
 export const getNannyInfo = (nanny: Nanny) => {
   function calculateAge(birthday: string) {

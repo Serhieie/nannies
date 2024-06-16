@@ -1,13 +1,11 @@
 import { useState } from 'react';
-import { useUserState } from '../../../hooks/useUserState';
-import { Frame } from '../../Parts/Frame/Frame';
-import { Modal } from '../../Modal/Modal';
+import { useUserState } from '@/hooks';
+import { Frame } from 'components/Parts/Frame/Frame';
+import { Modal } from 'components/Modal/Modal';
 import clsx from 'clsx';
 import { UserInfoForm } from './UserInfoForm/UserInfoForm';
 
-interface UserInfoProps {}
-
-export const UserInfo: React.FC<UserInfoProps> = () => {
+export const UserInfo: React.FC = () => {
   const [isUserInfoOpen, setIsUserInfoOpen] = useState(false);
   const { name, photoURL, isLoggedIn } = useUserState();
 
@@ -26,7 +24,9 @@ export const UserInfo: React.FC<UserInfoProps> = () => {
           onClick={toggleUserInfoModal}
           className={clsx(
             'user-select-none max-w-92 relative flex cursor-pointer',
-            'flex-shrink-0 items-center gap-3 xs:mx-0 xl:mx-10'
+            'flex-shrink-0 items-center gap-3 xs:mx-0 xl:mx-10',
+            'border border-transparent px-4 py-1 hover:border-skin-inverted',
+            'rounded-xl transition-all duration-300 hover:border-opacity-60'
           )}
         >
           <Frame

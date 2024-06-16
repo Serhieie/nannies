@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { setFilter } from '../../redux/filters/filtersSlice';
+import { setFilter } from 'filters/filtersSlice';
 import { Button } from '../Parts/Button/Button';
-import { AppDispatch } from '../../redux/store';
-import { selectFilter } from '../../redux/nannies/nanniesSelectors';
+import { AppDispatch } from '@/redux/store';
+import { selectFilter } from 'nannies/nanniesSelectors';
 import clsx from 'clsx';
 
 export const NoFilteredFavorites: React.FC = () => {

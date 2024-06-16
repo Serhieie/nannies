@@ -1,9 +1,9 @@
 export interface AppointmentFormData {
-  address: string;
-  tel: string;
-  childAge: string;
+  email?: string | undefined;
+  comment?: string | undefined;
   date: Date | null;
-  email: string;
+  tel: string;
+  address: string;
+  childAge: string;
   parentName: string;
-  comment: string;
 }

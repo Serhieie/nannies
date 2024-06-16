@@ -1,5 +1,5 @@
 import { ReviewsListItemProps } from './ReviewsListItem.types';
-import sprite from '../../../../assets/sprite.svg';
+import sprite from 'assets/sprite.svg';
 import clsx from 'clsx';
 
 export const ReviewsListItem: React.FC<ReviewsListItemProps> = ({ review }) => {

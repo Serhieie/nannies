@@ -1,7 +1,8 @@
+import { TotalNannies } from '@/components/Home/TotalNannies/TotalNannies';
 import clsx from 'clsx';
-import { Header } from '../../Header/Header';
-import { HomeTitle } from '../../Home/HomeTitle';
-import { Frame } from '../../Parts/Frame/Frame';
+import { Header } from 'components/Header/Header';
+import { HomeTitle } from 'components/Home/HomeTitle';
+import { Frame } from 'components/Parts/Frame/Frame';
 
 const HomePage: React.FC = () => {
   return (
@@ -23,6 +24,7 @@ const HomePage: React.FC = () => {
           ></div>
           <HomeTitle />
           <Frame hero={true} />
+          <TotalNannies />
         </div>
       </div>
     </section>

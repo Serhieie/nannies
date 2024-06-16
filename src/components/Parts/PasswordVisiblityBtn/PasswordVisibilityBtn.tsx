@@ -1,12 +1,19 @@
-import sprite from '../../../assets/sprite.svg';
+import sprite from 'assets/sprite.svg';
+import { PasswordVisibilityBtnProps } from './PasswordVisibilityBtn.types';
 
-export const PasswordVisibilityBtn = ({
+export const PasswordVisibilityBtn: React.FC<PasswordVisibilityBtnProps> = ({
   togglePasswordVisibility,
   showPassword,
 }) => {
+  const handleClick = () => {
+    if (togglePasswordVisibility) {
+      togglePasswordVisibility();
+    }
+  };
+
   return (
     <button
-      onClick={togglePasswordVisibility}
+      onClick={handleClick}
       type="button"
       className="absolute right-4 top-1/2 h-5 w-5 -translate-y-1/2 transform cursor-pointer"
     >

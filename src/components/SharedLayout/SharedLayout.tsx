@@ -4,7 +4,7 @@ import { Header } from '../Header/Header';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 
-export const SharedLayout = () => {
+export const SharedLayout: React.FC = () => {
   const location = useLocation();
   const isHome = location.pathname === '/';
   return (

@@ -1,9 +1,10 @@
-import { getNannyAdditionalInfo } from '../../../../helpers/getNannyInfo';
-import { useMedia } from '../../../../hooks/useMedia';
+import { getNannyAdditionalInfo } from '../../../../helpers';
+import { useMedia } from '../../../../hooks';
 import { AdditionalInfo } from '../AdditionalInfo/AdditionalInfo';
 import { FavoriteButton } from '../FavoriteButton/FavoriteButton';
+import { CardHeadProps } from './CardHead.types';
 
-export const CardHead = ({ nanny }) => {
+export const CardHead: React.FC<CardHeadProps> = ({ nanny }) => {
   const additionalInfo = getNannyAdditionalInfo(nanny);
   const { isDesktop } = useMedia();
   return (

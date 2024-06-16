@@ -1,4 +1,4 @@
-import { InputProps } from '../../Parts/Input/Input.types';
+import { InputProps } from 'components/Parts/Input/Input.types';
 
 export const registrationInputsConfig: InputProps[] = [
   {

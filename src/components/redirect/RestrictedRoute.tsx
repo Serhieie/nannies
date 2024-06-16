@@ -1,6 +1,6 @@
 import { Navigate } from 'react-router-dom';
 import { RedirectProps } from './Redirect.type';
-import { useUserState } from '../../hooks/useUserState';
+import { useUserState } from '@/hooks';
 
 const RestrictedRoute: React.FC<RedirectProps> = ({
   children,

@@ -1,18 +1,18 @@
 import { useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { Resolver, UseFormRegister, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import schema from '../../../schemas/authSchemas';
-import { Button } from '../../Parts/Button/Button';
-import { registerUser } from '../../../redux/user/userOperations';
+import { validationRegisterSchema } from '@/schemas';
+import { Button } from 'components/Parts/Button/Button';
+import { registerUser } from 'users/userOperations';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { AppDispatch } from '../../../redux/store';
-import { setIsRegistrationModalOpen } from '../../../redux/modals/modalsSlice';
+import { AppDispatch } from '@/redux/store';
+import { setIsRegistrationModalOpen } from 'modalsState/modalsSlice';
 import { RegistrationFormInputs } from './RegistrationModal.types';
 import { registrationInputsConfig } from './registrationInputsConfig';
-import { Input } from '../../Parts/Input/Input';
-import clsx from 'clsx';
-import { useUserState } from '../../../hooks/useUserState';
+import { Input } from 'components/Parts/Input/Input';
+import { clsx } from 'clsx';
+import { useUserState } from '@/hooks';
 
 const RegisterForm = () => {
   const {
@@ -21,7 +21,9 @@ const RegisterForm = () => {
     handleSubmit,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(schema.validationRegisterSchema),
+    resolver: yupResolver(
+      validationRegisterSchema
+    ) as Resolver<RegistrationFormInputs>,
   });
   const [showPassword, setShowPassword] = useState(false);
   const { isLoading } = useUserState();
@@ -50,7 +52,7 @@ const RegisterForm = () => {
         <Input
           key={id}
           required={required}
-          register={register}
+          register={register as UseFormRegister<RegistrationFormInputs>}
           errors={errors}
           id={id}
           type={id === 'password' && showPassword ? 'text' : type}

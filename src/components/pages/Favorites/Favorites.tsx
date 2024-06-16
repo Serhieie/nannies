@@ -1,4 +1,4 @@
-import { useNanniesState } from '../../../hooks/useNannieState';
+import { useNanniesState } from '@/hooks';
 import { Nannies } from '../../Nannies/Nannies';
 import { NoFavorites } from '../../NoFavorites/NoFavorites';
 import { NoFilteredFavorites } from '../../NoFavorites/NoFilteredFavorites';

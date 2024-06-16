@@ -1,4 +1,4 @@
-import { useMedia } from '../../hooks/useMedia';
+import { useMedia } from '@/hooks/useMedia';
 import { AppointmentModalProps } from './AppointmentModalPtops.types';
 import { AppointmentForm } from './AppointmentForm/AppointmentForm';
 import { NannyName } from './NannyName/NannyName';

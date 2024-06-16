@@ -1,12 +1,12 @@
 import { nanoid } from '@reduxjs/toolkit';
-import clsx from 'clsx';
+import { clsx } from 'clsx';
 import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch } from '../../../redux/store';
+import { AppDispatch } from '@/redux/store';
 import { PopUpFiltersProps } from './PopUpFilters.types';
-import { selectFilter } from '../../../redux/nannies/nanniesSelectors';
+import { selectFilter } from 'nannies/nanniesSelectors';
 import filters from '../filters.json';
-import { setFilter } from '../../../redux/filters/filtersSlice';
-import { FilterType } from '../../../redux/filters/filters.types';
+import { setFilter } from 'filters/filtersSlice';
+import { FilterType } from 'filters/filters.types';
 
 export const PopUpFilters: React.FC<PopUpFiltersProps> = ({
   isFiltersOpen,

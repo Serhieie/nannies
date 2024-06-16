@@ -1,20 +1,20 @@
 import { useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { Resolver, UseFormRegister, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import schema from '../../../schemas/authSchemas';
-import { Button } from '../../Parts/Button/Button';
-import { loginUser } from '../../../redux/user/userOperations';
+import { validationLoginSchema } from '@/schemas';
+import { Button } from 'components/Parts/Button/Button';
+import { loginUser } from 'users/userOperations';
 import { useDispatch } from 'react-redux';
-import { AppDispatch } from '../../../redux/store';
+import { AppDispatch } from '@/redux/store';
 import {
   setIsLoginModalOpen,
   setIsRegistrationModalOpen,
-} from '../../../redux/modals/modalsSlice';
-import { Input } from '../../Parts/Input/Input';
+} from '@/redux/modals/modalsSlice';
+import { Input } from 'components/Parts/Input/Input';
 import { LoginFormInputs } from './LoginModal.types';
 import { loginInputsConfig } from './loginInputsConfig';
-import clsx from 'clsx';
-import { useUserState } from '../../../hooks/useUserState';
+import { clsx } from 'clsx';
+import { useUserState } from '@/hooks';
 
 export const LoginForm = () => {
   const {
@@ -23,7 +23,7 @@ export const LoginForm = () => {
     reset,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(schema.validationLoginSchema),
+    resolver: yupResolver(validationLoginSchema) as Resolver<LoginFormInputs>,
   });
   const { isLoading } = useUserState();
   const dispatch = useDispatch<AppDispatch>();
@@ -56,7 +56,7 @@ export const LoginForm = () => {
           <Input
             key={id}
             required={required}
-            register={register}
+            register={register as UseFormRegister<LoginFormInputs>}
             errors={errors}
             id={id}
             type={id === 'password' && showPassword ? 'text' : type}

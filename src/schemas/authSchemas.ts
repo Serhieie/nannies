@@ -1,6 +1,6 @@
 import * as yup from 'yup';
 
-const validationRegisterSchema = yup.object().shape({
+export const validationRegisterSchema = yup.object().shape({
   name: yup
     .string()
     .required('Name is required')
@@ -42,7 +42,7 @@ const validationRegisterSchema = yup.object().shape({
     .required('Password is required'),
 });
 
-const validationLoginSchema = yup.object().shape({
+export const validationLoginSchema = yup.object().shape({
   email: yup
     .string()
     .required('Email is required')
@@ -74,8 +74,3 @@ const validationLoginSchema = yup.object().shape({
       'Invalid password format'
     ),
 });
-
-export default {
-  validationLoginSchema,
-  validationRegisterSchema,
-};

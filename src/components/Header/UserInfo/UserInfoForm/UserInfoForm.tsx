@@ -1,15 +1,20 @@
 import { useDispatch } from 'react-redux';
-import { useForm, useWatch } from 'react-hook-form';
-import { useUserState } from '../../../../hooks/useUserState';
-import { Input } from '../../../Parts/Input/Input';
+import { SubmitHandler, useForm, useWatch } from 'react-hook-form';
+import { useUserState } from '@/hooks';
+import { Input } from 'components/Parts/Input/Input';
 import clsx from 'clsx';
-import { Button } from '../../../Parts/Button/Button';
-import { updateUserProfile } from '../../../../redux/user/userOperations';
-import { AppDispatch } from '../../../../redux/store';
+import { Button } from 'components/Parts/Button/Button';
+import { updateUserProfile } from 'users/userOperations';
+import { AppDispatch } from '@/redux/store';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { updateUserSchema } from '../../../../schemas/userInfoSchema';
+import { updateUserSchema } from '@/schemas';
 import { useEffect, useState, useMemo } from 'react';
 import Upload from '../Upload/Upload';
+
+interface SubmitTypes {
+  photoURL: string | File;
+  updatedName: string;
+}
 
 export const UserInfoForm = () => {
   const { name, photoURL, isLoading } = useUserState();
@@ -50,10 +55,7 @@ export const UserInfoForm = () => {
     setIsFormChanged(hasChanged);
   }, [watchedValues, defaultValues]);
 
-  const onSubmit = async (data: {
-    photoURL: File | string;
-    updatedName: string;
-  }) => {
+  const onSubmit: SubmitHandler<SubmitTypes> = async (data) => {
     const { updatedName, photoURL } = data;
     try {
       await dispatch(updateUserProfile({ updatedName, photoURL }));
@@ -79,7 +81,10 @@ export const UserInfoForm = () => {
   };
 
   return (
-    <form className="flex flex-col gap-8" onSubmit={handleSubmit(onSubmit)}>
+    <form
+      className="flex flex-col gap-8"
+      onSubmit={handleSubmit(onSubmit as any)}
+    >
       <Upload
         handleAvatarChange={handleAvatarChange}
         register={register}

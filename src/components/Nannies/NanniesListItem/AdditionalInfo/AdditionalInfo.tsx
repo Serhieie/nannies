@@ -1,5 +1,5 @@
 import { AdditionalInfoProps } from './AdditionalInfo.type';
-import sprite from '../../../../assets/sprite.svg';
+import sprite from 'assets/sprite.svg';
 import clsx from 'clsx';
 
 export const AdditionalInfo: React.FC<AdditionalInfoProps> = ({ labels }) => {

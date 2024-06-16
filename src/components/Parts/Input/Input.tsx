@@ -4,7 +4,7 @@ import { InputProps } from './Input.types';
 import { FieldError } from 'react-hook-form';
 
 export const Input: React.FC<InputProps> = ({
-  register,
+  register = null,
   required = false,
   errors,
   showPassword = false,
@@ -18,7 +18,7 @@ export const Input: React.FC<InputProps> = ({
   templateArea = '',
 }) => {
   const errorMessage =
-    errors[id] && 'message' in errors[id]
+    errors && errors[id] && 'message' in errors[id]
       ? (errors[id] as FieldError).message
       : null;
 
@@ -30,7 +30,7 @@ export const Input: React.FC<InputProps> = ({
     >
       <input
         className={clsx(
-          `active:outline-skin-primary focus:outline-skin-primary w-full rounded-[12px]`,
+          `w-full rounded-[12px] focus:outline-skin-primary active:outline-skin-primary`,
           `border border-skin-grey border-opacity-20 px-[18px] py-[15px] leading-[125%]`,
           `placeholder:font-normal placeholder:text-skin-base hover:border-skin-primary`,
           `bg-skin-background-white focus:border-skin-primary active:border-skin-primary`,
@@ -39,7 +39,7 @@ export const Input: React.FC<InputProps> = ({
         id={id}
         placeholder={placeholder}
         type={type}
-        {...register(id, { required })}
+        {...(register ? register(id, { required }) : {})}
       />
       {errorMessage && (
         <p

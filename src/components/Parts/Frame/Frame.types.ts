@@ -8,4 +8,5 @@ export interface FrameProps {
   children?: React.ReactNode;
   imageSrc?: string;
   avaClass?: string;
+  userModal?: boolean;
 }

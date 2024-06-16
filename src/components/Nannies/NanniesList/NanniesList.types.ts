@@ -1,4 +1,4 @@
-import { Nanny } from '../../../redux/nannies/nannies.types';
+import { Nanny } from 'nannies/nannies.types';
 
 export interface NanniesListProps {
   nannies: Nanny[];

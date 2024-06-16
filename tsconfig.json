@@ -4,6 +4,18 @@
     "useDefineForClassFields": true,
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "module": "ESNext",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "src/*": ["src/*"],
+      "components/*": ["src/components/*"],
+      "assets/*": ["src/assets/*"],
+      "nannies/*": ["src/redux/nannies/*"],
+      "users/*": ["src/redux/user/*"],
+      "modalsState/*": ["src/redux/modals/*"],
+      "filters/*": ["src/redux/filters/*"]
+    },
+
     "skipLibCheck": true,
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,

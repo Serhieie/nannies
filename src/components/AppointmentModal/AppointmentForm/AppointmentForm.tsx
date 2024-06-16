@@ -1,17 +1,23 @@
-import { Controller, useForm } from 'react-hook-form';
-import { setIsAppointmentOpen } from '../../../redux/modals/modalsSlice';
+import {
+  Controller,
+  Resolver,
+  UseFormRegister,
+  useForm,
+} from 'react-hook-form';
+import { setIsAppointmentOpen } from 'modalsState/modalsSlice';
 import { useDispatch } from 'react-redux';
-import { AppDispatch } from '../../../redux/store';
+import { AppDispatch } from '@/redux/store';
 import { TimePicker } from '../TimePicker/TimePicker';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { appointmentSchema } from '../../../schemas/appointmentSchema';
-import { Button } from '../../Parts/Button/Button';
-import { Input } from '../../Parts/Input/Input';
+import { appointmentSchema } from '@/schemas/appointmentSchema';
+import { Button } from 'components/Parts/Button/Button';
+import { Input } from 'components/Parts/Input/Input';
 import {
   appointmentDefaultValues,
   appointmentInputsConfig,
 } from '../appointmentInputCofig';
-import clsx from 'clsx';
+import { clsx } from 'clsx';
+import { AppointmentFormData } from './AppointmentForm.types';
 
 export const AppointmentForm = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -22,17 +28,17 @@ export const AppointmentForm = () => {
     formState: { errors },
   } = useForm({
     defaultValues: appointmentDefaultValues,
-    resolver: yupResolver(appointmentSchema),
+    resolver: yupResolver(appointmentSchema) as Resolver<AppointmentFormData>,
   });
 
-  const onSubmit = (data) => {
+  const onSubmit = (data: AppointmentFormData) => {
     console.log(data);
     dispatch(setIsAppointmentOpen(false));
   };
 
   return (
     <form
-      className={`custom-scrollbar xs:custom-grid-xs sm2:custom-grid grid min-w-[292px] max-w-[600px]`}
+      className={`grid min-w-[292px] max-w-[600px] custom-scrollbar xs:custom-grid-xs sm2:custom-grid`}
       onSubmit={handleSubmit(onSubmit)}
       autoComplete={'off'}
     >
@@ -40,7 +46,7 @@ export const AppointmentForm = () => {
         ({ id, type, placeholder, required, templateArea, labelClasses }) => (
           <Input
             key={id}
-            register={register}
+            register={register as UseFormRegister<AppointmentFormData>}
             errors={errors}
             id={id}
             type={type}
@@ -54,7 +60,7 @@ export const AppointmentForm = () => {
       <label style={{ gridArea: 'comment' }} htmlFor="comment">
         <textarea
           className={clsx(
-            'active:outline-skin-primary focus:outline-skin-primary h-[116px] w-full resize-none',
+            'h-[116px] w-full resize-none focus:outline-skin-primary active:outline-skin-primary',
             'rounded-[12px] border border-skin-grey border-opacity-20 bg-skin-background-white',
             'px-[18px] py-[15px] leading-[125%] placeholder:font-normal placeholder:text-skin-base',
             'hover:border-skin-primary focus:border-skin-primary active:border-skin-primary'

@@ -2,8 +2,7 @@ import { IoCloseSharp } from 'react-icons/io5';
 import { NavItem } from '../NavItem/NavItem';
 import clsx from 'clsx';
 import { NavListProps } from './NavList.types';
-import { useMedia } from '../../../../hooks/useMedia';
-import { useUserState } from '../../../../hooks/useUserState';
+import { useMedia, useUserState } from '@/hooks';
 
 const links = [
   { text: 'Home', to: '/' },

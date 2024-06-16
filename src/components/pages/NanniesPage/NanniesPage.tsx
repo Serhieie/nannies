@@ -1,5 +1,5 @@
-import { useNanniesState } from '../../../hooks/useNannieState';
-import { Nannies } from '../../Nannies/Nannies';
+import { useNanniesState } from '@/hooks';
+import { Nannies } from 'components/Nannies/Nannies';
 
 const NanniesPage: React.FC = () => {
   const { filteredNannies } = useNanniesState();

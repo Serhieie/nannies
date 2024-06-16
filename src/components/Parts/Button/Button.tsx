@@ -24,9 +24,11 @@ export const Button: React.FC<ButtonProps> = ({
         {
           'bg-skin-background hover:bg-skin-background-white': primary,
           'hover:text-skin-theme': primary,
-          'bg-skin-background-muted border hover:bg-skin-background': !primary,
-          'border-opacity-40 text-skin-inverted hover:bg-opacity-40': !primary,
-          'border-skin-inverted': !primary,
+          'bg-skin-background-muted border hover:xl:bg-skin-background':
+            !primary,
+          'border-opacity-40 text-skin-inverted hover:xl:bg-opacity-40':
+            !primary,
+          'border-skin-inverted hover:bg-white hover:bg-opacity-10': !primary,
         }
       )}
     >

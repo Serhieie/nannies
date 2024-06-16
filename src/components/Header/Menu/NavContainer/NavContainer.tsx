@@ -3,23 +3,22 @@ import { ThemeSelector } from '../../ThemeSelector/ThemeSelector';
 import { NavList } from '../NavList/NavList';
 import { AuthButtons } from '../../AuthButtons/AuthButtons';
 import { UserInfo } from '../../UserInfo/UserInfo';
-import { useMedia } from '../../../../hooks/useMedia';
+import { useMedia, useUserState } from '@/hooks';
 import { useLocation } from 'react-router-dom';
 import { NavContainerProps } from './NavContainer.types';
-import { AppDispatch } from '../../../../redux/store';
+import { AppDispatch } from '@/redux/store';
 import { useDispatch } from 'react-redux';
-import { logoutUser } from '../../../../redux/user/userOperations';
+import { logoutUser } from '@/redux/user/userOperations';
 import { LogoutButton } from '../LogoutButton/LogoutButton';
-import { useUserState } from '../../../../hooks/useUserState';
 
 export const NavContainer: React.FC<NavContainerProps> = ({
   isNavOpen,
   toggleNav,
 }) => {
   const location = useLocation();
+  const isHome = location.pathname === '/';
   const dispatch = useDispatch<AppDispatch>();
   const { isLoggedIn } = useUserState();
-  const isHome = location.pathname === '/';
   const { isTablet, isMobile, isDesktop } = useMedia();
 
   const handleLogout = () => {

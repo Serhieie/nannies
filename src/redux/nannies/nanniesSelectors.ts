@@ -1,7 +1,9 @@
 import { createSelector } from '@reduxjs/toolkit';
-import { filterNannies } from '../../helpers/filterNannies';
+import { filterNannies } from '@/helpers';
 import { RootState } from '../rootReducer';
 
+export const selectPage = (state: RootState) => state.nannies.page;
+export const selectTotal = (state: RootState) => state.nannies.total;
 export const selectNannies = (state: RootState) => state.nannies.nannies;
 export const selectFavorites = (state: RootState) => state.nannies.favorites;
 export const selectFilter = (state: RootState) => state.filters.filter;

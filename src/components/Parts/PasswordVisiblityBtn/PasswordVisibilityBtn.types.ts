@@ -1,4 +1,4 @@
 export interface PasswordVisibilityBtnProps {
-  togglePasswordVisibility: () => void;
+  togglePasswordVisibility: (() => void) | null;
   showPassword: boolean;
 }

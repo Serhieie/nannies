@@ -6,7 +6,6 @@ import {
   loginUser,
   logoutUser,
   updateUserProfile,
-  UpdatedUserProfile,
 } from './userOperations';
 import { initialStateUser } from './initialStateUser';
 import { updateUserStateAction, UserState } from './initialStateUser.types';
@@ -14,6 +13,9 @@ import {
   handlePending,
   handleRejected,
   handleLogoutFulfilled,
+  handleUpdateUserProfileFulfilled,
+  handleLoginUserFulfilled,
+  handleRegisterUserFulfilled,
 } from './userOperationHandlers';
 
 const userSlice = createSlice({
@@ -34,38 +36,16 @@ const userSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(registerUser.pending, handlePending)
-      .addCase(registerUser.fulfilled, (state, action) => {
-        state.isLoadingUser = false;
-        state.isLoggedIn = true;
-        state.name = action.payload.displayName;
-        state.email = action.payload.email || '';
-        state.token = action.payload.uid;
-      })
+      .addCase(registerUser.fulfilled, handleRegisterUserFulfilled)
       .addCase(registerUser.rejected, handleRejected)
       .addCase(loginUser.pending, handlePending)
-      .addCase(loginUser.fulfilled, (state, action) => {
-        state.isLoadingUser = false;
-        state.isLoggedIn = true;
-        state.name = action.payload.displayName;
-        state.email = action.payload.email || '';
-        state.token = action.payload.uid;
-        state.photoURL = action.payload.photoURL ? action.payload.photoURL : '';
-      })
+      .addCase(loginUser.fulfilled, handleLoginUserFulfilled)
       .addCase(loginUser.rejected, handleRejected)
       .addCase(logoutUser.pending, handlePending)
       .addCase(logoutUser.fulfilled, handleLogoutFulfilled)
       .addCase(logoutUser.rejected, handleRejected)
       .addCase(updateUserProfile.pending, handlePending)
-      .addCase(
-        updateUserProfile.fulfilled,
-        (state, action: PayloadAction<UpdatedUserProfile>) => {
-          state.isLoadingUser = false;
-          state.name = action.payload.name ? action.payload.name : state.name;
-          state.photoURL = action.payload.photoURL
-            ? action.payload.photoURL
-            : '';
-        }
-      )
+      .addCase(updateUserProfile.fulfilled, handleUpdateUserProfileFulfilled)
       .addCase(updateUserProfile.rejected, handleRejected);
   },
 });

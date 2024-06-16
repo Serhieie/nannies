@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { auth, database, storage } from '../../firebaseConfig/firebaseConfig';
+import { auth, database, storage } from '@/firebaseConfig/firebaseConfig';
 import { toast } from 'react-toastify';
 import {
   AuthErrorCodes,
@@ -188,7 +188,7 @@ export const updateUserProfile = createAsyncThunk<
       fileReader.readAsDataURL(credentials.photoURL);
       const dataUrl = await new Promise<string>((resolve, reject) => {
         fileReader.onload = (e) => {
-          resolve(e.target.result as string);
+          resolve(e.target?.result as string);
         };
         fileReader.onerror = (e) => {
           reject(e);
@@ -218,8 +218,6 @@ export const updateUserProfile = createAsyncThunk<
     toast.success('Profile updated successfully', {
       position: 'bottom-right',
     });
-
-    console.log(updatedUserData);
 
     return updatedUserData;
   } catch (error: any) {

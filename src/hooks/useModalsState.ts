@@ -4,7 +4,7 @@ import {
   getIsLoginModalOpen,
   getIsLoginPopUpOpen,
   getIsRegistrationModalOpen,
-} from '../redux/modals/modalsSelectors';
+} from 'modalsState/modalsSelectors';
 
 export interface useModalsReturn {
   isLoginPopUpOpen: boolean;

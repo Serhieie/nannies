@@ -1,15 +1,14 @@
 import { useState } from 'react';
-import { useMedia } from '../../../hooks/useMedia';
-import { Overlay } from '../../Parts/Overlay/Overlay';
+import { useMedia, useUserState } from '@/hooks';
+import { Overlay } from 'components/Parts/Overlay/Overlay';
 import { UserInfo } from '../UserInfo/UserInfo';
 import { AuthButtons } from '../AuthButtons/AuthButtons';
 import { MenuButton } from './MenuButton/MenuButton';
 import { NavContainer } from './NavContainer/NavContainer';
 import { LogoutButton } from './LogoutButton/LogoutButton';
-import { logoutUser } from '../../../redux/user/userOperations';
+import { logoutUser } from 'users/userOperations';
 import { useDispatch } from 'react-redux';
-import { AppDispatch } from '../../../redux/store';
-import { useUserState } from '../../../hooks/useUserState';
+import { AppDispatch } from '@/redux/store';
 import clsx from 'clsx';
 
 export const Menu: React.FC = () => {

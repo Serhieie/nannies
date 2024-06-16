@@ -1,8 +1,8 @@
 import clsx from 'clsx';
 import { FrameProps } from './Frame.types';
-import heroImage from '../../../assets/images/HeroX1.webp';
-import heroImage2x from '../../../assets/images/HeroX2.webp';
-import sprite from '../../../assets/sprite.svg';
+import heroImage from 'assets/images/HeroX1.webp';
+import heroImage2x from 'assets/images/HeroX2.webp';
+import sprite from 'assets/sprite.svg';
 
 export const Frame: React.FC<FrameProps> = ({
   width = 'w-full',
@@ -13,6 +13,7 @@ export const Frame: React.FC<FrameProps> = ({
   position = 'object-center',
   hero = false,
   avaClass,
+  userModal = false,
 }) => {
   const frameClasses = clsx(
     `relative`,
@@ -47,7 +48,13 @@ export const Frame: React.FC<FrameProps> = ({
         />
       ) : (
         <svg
-          className="mx-auto fill-skin-primary transition-colors duration-300 md:h-10 md:w-10"
+          className={clsx(
+            `mx-auto fill-skin-primary transition-colors duration-300`,
+            {
+              'md:h-10 md:w-10': !userModal,
+              'md:h-32 md:w-32': userModal,
+            }
+          )}
           xmlns="http://www.w3.org/2000/svg"
           width={30}
           height={30}

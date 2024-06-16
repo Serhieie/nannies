@@ -1,9 +1,5 @@
-import { Button } from '../../../Parts/Button/Button';
-
-interface LogoutButtonProps {
-  handleLogout: () => void;
-  className?: string;
-}
+import { Button } from 'components/Parts/Button/Button';
+import { LogoutButtonProps } from './LogoButton.types';
 
 export const LogoutButton: React.FC<LogoutButtonProps> = ({
   handleLogout,

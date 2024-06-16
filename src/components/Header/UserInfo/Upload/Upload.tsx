@@ -1,6 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
-import { Frame } from '../../../Parts/Frame/Frame';
+import { Frame } from 'components/Parts/Frame/Frame';
 import { FaPlus } from 'react-icons/fa';
 import { UploadProps } from './Upload.types';
 import { FiMinusSquare } from 'react-icons/fi';
@@ -27,7 +27,7 @@ const Upload: React.FC<UploadProps> = ({
       htmlFor="photoURL"
     >
       <button
-        className="absolute -right-6 -top-6 z-20 mx-auto inline-block flex h-7 w-7"
+        className="absolute -right-6 -top-6 z-20 mx-auto inline-block h-7 w-7"
         onClick={clearAva}
         type="button"
       >
@@ -43,8 +43,9 @@ const Upload: React.FC<UploadProps> = ({
         onChange={handleAvatarChange}
       />
       <Frame
-        avaClass="w-44 h-36 mx-auto  cursor-pointer rounded-[10px] hover:border-skin-primary object-cover"
+        avaClass="w-32 h-32 mx-auto  cursor-pointer rounded-[10px] hover:border-skin-primary object-cover"
         imageSrc={previewPhotoURL}
+        userModal={true}
       />
       <span
         className={clsx(

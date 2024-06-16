@@ -1,5 +1,5 @@
-import { FilterType } from '../redux/filters/filters.types';
-import { Nanny } from '../redux/nannies/nannies.types';
+import { FilterType } from 'filters/filters.types';
+import { Nanny } from 'nannies/nannies.types';
 
 export const filterNannies = (
   nannies: Nanny[],

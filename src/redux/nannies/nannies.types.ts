@@ -20,11 +20,21 @@ export interface Review {
   reviewer: string;
 }
 
+export interface FetchNanniesResponse {
+  newNannies: Nanny[];
+  page: number;
+}
+
+export interface FetchNanniesRej {
+  error: string;
+}
+
 export interface NanniesState {
   nannies: Nanny[];
   favorites: Nanny[];
-  activeNannie: Nanny;
+  activeNannie: Nanny | null;
   isLoading: boolean;
   error: string | null;
-  status: 'idle' | 'loading' | 'succeeded' | 'failed';
+  page: number;
+  total: number;
 }

@@ -1,15 +1,15 @@
-import { Button } from '../../Parts/Button/Button';
+import { Button } from 'components/Parts/Button/Button';
 import { useLocation } from 'react-router-dom';
-import { Modal } from '../../Modal/Modal';
-import RegisterForm from '../../AuthModals/RegistationModal/RegistrationModal';
-import { LoginForm } from '../../AuthModals/LoginModal/LoginModal';
+import { Modal } from 'components/Modal/Modal';
+import RegisterForm from 'components/AuthModals/RegistationModal/RegistrationModal';
+import { LoginForm } from 'components/AuthModals/LoginModal/LoginModal';
 import { useDispatch } from 'react-redux';
-import { AppDispatch } from '../../../redux/store';
+import { AppDispatch } from '@/redux/store';
 import {
   setIsLoginModalOpen,
   setIsRegistrationModalOpen,
-} from '../../../redux/modals/modalsSlice';
-import { useModalsState } from '../../../hooks/useModalsState';
+} from 'modalsState/modalsSlice';
+import { useModalsState } from '@/hooks';
 
 export const AuthButtons: React.FC = () => {
   const { isLoginModalOpen, isRegistrationModalOpen } = useModalsState();

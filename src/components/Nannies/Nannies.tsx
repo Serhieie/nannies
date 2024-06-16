@@ -2,9 +2,9 @@ import { NanniesProps } from './Nannies.types';
 import { NanniesList } from './NanniesList/NanniesList';
 import { Filter } from '../Filter/Filter';
 import { useEffect, useState } from 'react';
-import { fetchNannies } from '../../redux/nannies/nanniesOperations';
+import { fetchNannies } from 'nannies/nanniesOperations';
 import { useDispatch } from 'react-redux';
-import { AppDispatch } from '../../redux/store';
+import { AppDispatch } from '@/redux/store';
 import { Container } from '../Parts/Container/Container';
 import { Button } from '../Parts/Button/Button';
 import { Modal } from '../Modal/Modal';
@@ -14,18 +14,18 @@ import {
   setIsLoginModalOpen,
   setIsLoginPopUpOpen,
 } from '../../redux/modals/modalsSlice';
-import { useModalsState } from '../../hooks/useModalsState';
+import { useModalsState, useNanniesState } from '../../hooks';
 import { AppointmentModal } from '../AppointmentModal/AppointmentModa';
-import { useNanniesState } from '../../hooks/useNannieState';
 
 export const Nannies: React.FC<NanniesProps> = ({ nannies }) => {
+  const { activeNannie, total } = useNanniesState();
   const [perPage, setPerPage] = useState(3);
-  const { activeNannie } = useNanniesState();
   const { isLoginPopUpOpen, isAppointmentOpen } = useModalsState();
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   const location = useLocation();
   const isFavoritesPage = location.pathname === '/favorites';
+  const showLoadMore = total > perPage;
 
   useEffect(() => {
     dispatch(fetchNannies(perPage));
@@ -54,19 +54,21 @@ export const Nannies: React.FC<NanniesProps> = ({ nannies }) => {
   };
 
   return (
-    <Container>
-      <div className="mb-24 mt-16 min-h-[100dvh]">
-        <Filter />
-        <NanniesList nannies={nannies} />
-        {!isFavoritesPage && (
-          <Button
-            className="mx-auto mt-16 max-w-[160px] text-skin-inverted"
-            text="Load More"
-            type="button"
-            onClick={loadMore}
-          />
-        )}
-      </div>
+    <>
+      <Container>
+        <div className="mb-24 mt-16 min-h-[calc(100dvh-260px)]">
+          <Filter />
+          <NanniesList nannies={nannies} />
+          {!isFavoritesPage && showLoadMore && (
+            <Button
+              className="mx-auto mt-16 max-w-[160px] text-skin-inverted"
+              text="Load More"
+              type="button"
+              onClick={loadMore}
+            />
+          )}
+        </div>
+      </Container>
       <Modal
         title="Hello"
         textClassName="xs:text-lg xl:text-xl w-96"
@@ -91,6 +93,6 @@ export const Nannies: React.FC<NanniesProps> = ({ nannies }) => {
       >
         <AppointmentModal nanny={activeNannie} />
       </Modal>
-    </Container>
+    </>
   );
 };

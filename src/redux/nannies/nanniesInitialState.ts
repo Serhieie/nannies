@@ -6,5 +6,6 @@ export const initialStateNannies: NanniesState = {
   activeNannie: null,
   isLoading: false,
   error: null,
-  status: 'idle',
+  page: 1,
+  total: 0,
 };

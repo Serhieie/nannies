@@ -2,10 +2,10 @@ import { nanoid } from '@reduxjs/toolkit';
 import clsx from 'clsx';
 import { PopUpThemesProps } from './PopUpThemes.types';
 import { useEffect } from 'react';
-import { changeUserTheme } from '../../../../redux/user/userSlice';
+import { changeUserTheme } from 'users/userSlice';
 import { useDispatch } from 'react-redux';
-import { AppDispatch } from '../../../../redux/store';
-import { useUserState } from '../../../../hooks/useUserState';
+import { AppDispatch } from '@/redux/store';
+import { useUserState } from '@/hooks';
 
 const themes = ['Red', 'Blue', 'Green'];
 

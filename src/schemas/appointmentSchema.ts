@@ -10,15 +10,15 @@ export const appointmentSchema = yup.object().shape({
     .test(
       'has-one-at-symbol',
       'Email must contain exactly one "@" symbol',
-      (value) => (value.match(/@/g) || []).length === 1
+      (value) => (value?.match(/@/g) || []).length === 1
     )
     .test(
       'has-dot-after-at-symbol',
       'Email must contain a dot after the "@" symbol',
       (value) => {
-        const atIndex = value.indexOf('@');
-        const dotIndex = value.indexOf('.', atIndex);
-        return dotIndex > atIndex;
+        const atIndex = value?.indexOf('@');
+        const dotIndex = value?.indexOf('.', atIndex !== -1 ? atIndex : 0);
+        if (dotIndex && atIndex) dotIndex > atIndex!;
       }
     )
     .matches(

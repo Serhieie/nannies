@@ -1,14 +1,18 @@
 import { HiArrowRight } from 'react-icons/hi';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import clsx from 'clsx';
+import { fetchNanniesTotal } from '@/redux/nannies/nanniesOperations';
+import { AppDispatch } from '@/redux/store';
+import { useDispatch } from 'react-redux';
 
 export const HomeTitle: React.FC = () => {
   const [isMouseOn, setIsMouseOn] = useState(false);
+  const dispatch = useDispatch<AppDispatch>();
 
-  const handleGetStarted = () => {
-    console.log('get started');
-  };
+  useEffect(() => {
+    dispatch(fetchNanniesTotal());
+  }, []);
 
   return (
     <div
@@ -32,7 +36,6 @@ export const HomeTitle: React.FC = () => {
           'border-white border-opacity-40 px-10 py-4 text-xl leading-[120%]'
         )}
         to={'/nannies'}
-        onClick={handleGetStarted}
         onMouseEnter={() => setIsMouseOn(true)}
         onMouseLeave={() => setIsMouseOn(false)}
       >

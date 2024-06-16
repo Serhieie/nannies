@@ -8,8 +8,8 @@ import {
   getAvatar,
   getUserState,
   getName,
-} from '../redux/user/userSelectors';
-import { UserState } from '../redux/user/initialStateUser.types';
+} from 'users/userSelectors';
+import { UserState } from 'users/initialStateUser.types';
 
 export interface useAuthReturn {
   userState: UserState;

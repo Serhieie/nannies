@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { useMedia } from '../../../hooks/useMedia';
+import { useMedia } from '@/hooks';
 import { OverlayProps } from './Overlay.types';
 
 export const Overlay: React.FC<OverlayProps> = ({ onClose, isNavOpen }) => {
