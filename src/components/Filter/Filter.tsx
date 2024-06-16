@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { RiArrowDownSLine } from 'react-icons/ri';
 import { PopUpFilters } from './PopUpFilters/PopUpFilters';
 import { useSelector } from 'react-redux';
@@ -8,11 +8,12 @@ import clsx from 'clsx';
 export const Filter: React.FC = () => {
   const [isFiltersOpen, setIsFiltersOpen] = useState<boolean>(false);
   const filter = useSelector(selectFilter);
+  const filterRef = useRef<HTMLDivElement>(null);
   const toggleOpenFilters = () => {
     setIsFiltersOpen((state) => !state);
   };
   return (
-    <div className={clsx('relative w-56 select-none')}>
+    <div ref={filterRef} className={clsx('relative w-56 select-none')}>
       <span
         onClick={toggleOpenFilters}
         className={clsx(
@@ -28,6 +29,7 @@ export const Filter: React.FC = () => {
         />
       </span>
       <PopUpFilters
+        filterRef={filterRef}
         toggleOpenFilters={toggleOpenFilters}
         isFiltersOpen={isFiltersOpen}
       />

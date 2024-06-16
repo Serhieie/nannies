@@ -6,12 +6,14 @@ import { changeUserTheme } from 'users/userSlice';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '@/redux/store';
 import { useUserState } from '@/hooks';
+import React from 'react'; // Make sure to import React
 
 const themes = ['Red', 'Blue', 'Green'];
 
 export const PopUpThemes: React.FC<PopUpThemesProps> = ({
   isThemePopUpOpen,
   toggleOpenTheme,
+  themeSelectorRef,
 }) => {
   const dispatch = useDispatch<AppDispatch>();
   const themeRef = useRef<HTMLDivElement>(null);
@@ -22,24 +24,28 @@ export const PopUpThemes: React.FC<PopUpThemesProps> = ({
     dispatch(changeUserTheme(themeToSet));
   };
 
-  //change theme
+  // Update theme class on body
   useEffect(() => {
     if (theme) {
       document.body.classList.remove('theme-blue', 'theme-green');
       document.body.classList.add(`theme-${theme}`);
+      toggleOpenTheme();
     }
   }, [theme]);
 
-  //close by click
+  // Close popup on outside click
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
         themeRef.current &&
-        !themeRef.current.contains(event.target as Node)
+        !themeRef.current.contains(event.target as Node) &&
+        themeSelectorRef.current &&
+        !themeSelectorRef.current.contains(event.target as Node)
       ) {
         toggleOpenTheme();
       }
     };
+
     if (isThemePopUpOpen) {
       document.addEventListener('mousedown', handleClickOutside);
     } else {
@@ -49,11 +55,19 @@ export const PopUpThemes: React.FC<PopUpThemesProps> = ({
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [isThemePopUpOpen, toggleOpenTheme]);
+  }, [isThemePopUpOpen, toggleOpenTheme, themeSelectorRef]);
+
+  // Stop click event from propagating outside of the popup
+  const handleClickInside = (
+    event: React.MouseEvent<HTMLDivElement, MouseEvent>
+  ) => {
+    event.stopPropagation();
+  };
 
   return (
     <div
       ref={themeRef}
+      onClick={handleClickInside}
       className={clsx(
         'absolute right-0 top-20 z-40 flex h-32 w-28 flex-col justify-center p-4',
         'gap-1.5 rounded-md border border-skin-primary bg-skin-background-white',

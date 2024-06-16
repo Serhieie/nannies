@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { RiArrowDownSLine } from 'react-icons/ri';
 import { PopUpThemes } from './PopUpThemes/PopUpThemes';
 import { useMedia } from '@/hooks';
@@ -7,6 +7,7 @@ import clsx from 'clsx';
 export const ThemeSelector: React.FC = () => {
   const [isThemePopUpOpen, setIsThemePopUpOpen] = useState(false);
   const { isMobile, isTablet } = useMedia();
+  const themeSelectorRef = useRef<HTMLDivElement>(null);
 
   const toggleOpenTheme = async () => {
     setIsThemePopUpOpen((state) => !state);
@@ -14,6 +15,7 @@ export const ThemeSelector: React.FC = () => {
 
   return (
     <div
+      ref={themeSelectorRef}
       onClick={toggleOpenTheme}
       className={`z-1 relative w-full cursor-pointer xl:max-w-[128px] xl:px-0`}
     >
@@ -39,6 +41,7 @@ export const ThemeSelector: React.FC = () => {
         />
       </span>
       <PopUpThemes
+        themeSelectorRef={themeSelectorRef}
         toggleOpenTheme={toggleOpenTheme}
         isThemePopUpOpen={isThemePopUpOpen}
       />

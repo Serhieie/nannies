@@ -12,6 +12,7 @@ import { FilterType } from 'filters/filters.types';
 export const PopUpFilters: React.FC<PopUpFiltersProps> = ({
   isFiltersOpen,
   toggleOpenFilters,
+  filterRef,
 }) => {
   const dispatch = useDispatch<AppDispatch>();
   const chosedFilter = useSelector(selectFilter);
@@ -22,7 +23,9 @@ export const PopUpFilters: React.FC<PopUpFiltersProps> = ({
     const handleClickOutside = (event: MouseEvent) => {
       if (
         popUpRef.current &&
-        !popUpRef.current.contains(event.target as Node)
+        !popUpRef.current.contains(event.target as Node) &&
+        filterRef.current &&
+        !filterRef.current.contains(event.target as Node)
       ) {
         toggleOpenFilters();
       }
@@ -37,7 +40,7 @@ export const PopUpFilters: React.FC<PopUpFiltersProps> = ({
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [isFiltersOpen, toggleOpenFilters]);
+  }, [isFiltersOpen, toggleOpenFilters, filterRef]);
 
   const handleChangeFilter = (filter: FilterType) => {
     dispatch(setFilter(filter));
@@ -50,9 +53,11 @@ export const PopUpFilters: React.FC<PopUpFiltersProps> = ({
         'absolute left-0 top-[112%] z-40 flex h-[244px] w-[226px] flex-col',
         'justify-center gap-3 rounded-[14px] bg-skin-background-white px-4',
         'py-[14px] text-sm text-skin-base shadow-lg transition-all duration-300',
+        'select-none',
+
         {
           'invisible scale-75 opacity-0': !isFiltersOpen,
-          'visible z-40 scale-100 opacity-100': isFiltersOpen,
+          'visible z-40 scale-100 select-none opacity-100': isFiltersOpen,
         }
       )}
     >
@@ -62,6 +67,7 @@ export const PopUpFilters: React.FC<PopUpFiltersProps> = ({
           className={clsx(
             'cursor-pointer text-lg font-normal leading-[111%]',
             'transition-colors duration-300 ease-in-out hover:text-skin-theme',
+            'select-none',
             {
               'text-skin-base': chosedFilter === filter.title,
               'text-skin-secondary': chosedFilter !== filter.title,
