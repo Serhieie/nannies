@@ -5,8 +5,8 @@ export const NoPage: React.FC = () => {
   return (
     <div
       className={clsx(
-        'mt-0 flex h-[100dvh] w-full select-none flex-col',
-        'items-center justify-center bg-skin-background'
+        'mt-0 flex h-[100dvh] w-full select-none flex-col bg-skin-background',
+        'items-center justify-center bg-opacity-90'
       )}
     >
       <div
@@ -31,7 +31,8 @@ export const NoPage: React.FC = () => {
           className={clsx(
             'text-skin-inverted-red rounded-lg border border-white hover:border',
             'bg-skin-muted-button px-4 py-2 text-center transition-colors',
-            'mt-4 duration-300 hover:bg-skin-background hover:text-skin-inverted'
+            'mt-4 text-skin-inverted duration-300 hover:bg-skin-background',
+            'hover:bg-skin-background-white hover:bg-opacity-20'
           )}
           to="/"
         >
