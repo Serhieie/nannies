@@ -22,8 +22,8 @@ export const HomeTitle: React.FC = () => {
         'absolute z-30 mt-6 flex w-full -translate-x-1/2 select-none flex-col',
         'rounded-[30px] bg-transparent bg-opacity-50 p-8 text-skin-inverted',
         'backdrop-blur-sm xs:bottom-0 xs:left-1/2 xs:max-w-[600px] md:left-10',
-        'md:top-2/4 md:max-w-[320px] md:-translate-y-1/2 md:translate-x-0 md:bg-opacity-0',
-        'lg:max-w-[520px]',
+        'md:top-2/4 md:max-w-[320px] md:-translate-y-1/2 md:translate-x-0 md:bg-opacity-0 md2:max-w-[400px]',
+        'xxl:left-38 lg:left-12 lg:max-w-[520px] xxl:max-w-[900px]',
         {
           'gap-1': isHeightLow,
           'xs:gap-2 md:gap-6': !isHeightLow,
@@ -34,7 +34,7 @@ export const HomeTitle: React.FC = () => {
         className={clsx({
           'max-w-[400px] xs:text-xl sm:text-2xl md:text-2xl md2:text-4xl xl:text-7xl':
             isHeightLow,
-          'xs:text-3xl sm:text-4xl md:text-4xl md2:text-6xl xl:text-7xl':
+          'xs:text-3xl sm:text-4xl md:text-4xl md2:text-6xl xl:text-8xl xxl:text-9xl':
             !isHeightLow,
         })}
       >

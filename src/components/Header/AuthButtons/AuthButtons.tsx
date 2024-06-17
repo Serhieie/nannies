@@ -9,10 +9,12 @@ import {
   setIsLoginModalOpen,
   setIsRegistrationModalOpen,
 } from 'modalsState/modalsSlice';
-import { useModalsState } from '@/hooks';
+import { useMedia, useModalsState } from '@/hooks';
+import clsx from 'clsx';
 
 export const AuthButtons: React.FC = () => {
   const { isLoginModalOpen, isRegistrationModalOpen } = useModalsState();
+  const { isDesktop } = useMedia();
   const dispatch = useDispatch<AppDispatch>();
   const location = useLocation();
   const isHomePage = location.pathname === '/';
@@ -34,26 +36,34 @@ export const AuthButtons: React.FC = () => {
   return (
     <>
       <div
-        className={`flex h-full w-full max-w-96 items-center gap-2 xs:flex-col md2:flex-row xl:ml-10`}
-      >
-        {isHomePage && (
-          <>
-            <Button
-              text={'Log in'}
-              type="button"
-              onClick={isLoginOpen}
-              primary={false}
-              className="max-h-[48px] w-[124px] py-1 text-lg md:py-2"
-            />{' '}
-            <Button
-              text={'Registration'}
-              type="button"
-              onClick={isRegistrationOpen}
-              primary={true}
-              className={`max-h-[48px] w-[168px] px-12 py-1 text-lg md:px-10 md:py-2`}
-            />
-          </>
+        className={clsx(
+          `flex h-full w-full max-w-96 items-center gap-2 xl:ml-10`,
+          {
+            'xs:flex-col md2:flex-row': isHomePage,
+            'flex-col': !isHomePage && !isDesktop,
+          }
         )}
+      >
+        <Button
+          text={'Log in'}
+          type="button"
+          onClick={isLoginOpen}
+          primary={false}
+          className="max-h-[48px] w-[124px] py-1 text-lg md:py-2"
+        />{' '}
+        <Button
+          text={'Registration'}
+          type="button"
+          onClick={isRegistrationOpen}
+          primary={true}
+          className={clsx(
+            `max-h-[48px] w-[168px] px-12 py-1 text-lg md:px-10 md:py-2`,
+            {
+              'border border-skin-inverted border-opacity-40 bg-skin-background-white bg-opacity-10':
+                !isHomePage,
+            }
+          )}
+        />
       </div>
       <Modal
         title="Log In"

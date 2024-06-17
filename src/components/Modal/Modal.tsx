@@ -3,6 +3,7 @@ import sprite from 'assets/sprite.svg';
 import { ModalProps } from './Modal.types';
 import { useMedia } from '@/hooks';
 import clsx from 'clsx';
+import { useLocation } from 'react-router-dom';
 
 ReactModal.setAppElement('#root-modal');
 
@@ -14,7 +15,7 @@ export const Modal: React.FC<ModalProps> = ({
   text,
   textClassName,
 }) => {
-  const { isHeight } = useMedia();
+  const { isHeight, isHeightLow } = useMedia();
   const regOrLog =
     title === 'Log In' ||
     title === 'Registration' ||
@@ -34,8 +35,10 @@ export const Modal: React.FC<ModalProps> = ({
       'scale-100': isOpen,
       'scale-75': !isOpen,
       'max-w-[565px]': regOrLog,
-      'top-2 bottom-2 overflow-hidden lg:pr-8': isHeight,
-      'top-1/2 transform -translate-y-1/2': !isHeight,
+      'top-2 bottom-2 overflow-hidden lg:pr-8':
+        (isHeight && !regOrLog) || (isHeightLow && regOrLog),
+      'top-1/2 transform -translate-y-1/2':
+        (!isHeight && !regOrLog) || (!isHeightLow && regOrLog),
     }
   );
 

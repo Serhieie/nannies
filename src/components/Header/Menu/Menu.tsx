@@ -10,11 +10,14 @@ import { logoutUser } from 'users/userOperations';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '@/redux/store';
 import clsx from 'clsx';
+import { useLocation } from 'react-router-dom';
 
 export const Menu: React.FC = () => {
   const [isNavOpen, setIsNavOpen] = useState<boolean>(false);
   const { isLoggedIn } = useUserState();
   const dispatch = useDispatch<AppDispatch>();
+  const location = useLocation();
+  const isHome = location.pathname === '/';
   const { isTablet, isMobile, isDesktop } = useMedia();
 
   const toggleNav = () => {
@@ -28,13 +31,14 @@ export const Menu: React.FC = () => {
   return (
     <div
       className={clsx(`relative flex w-full items-center`, {
-        'xs:justify-center md:justify-end': isLoggedIn,
-        'justify-end': !isLoggedIn,
+        'xs:justify-center md:justify-end':
+          isLoggedIn || (!isLoggedIn && isHome),
+        'justify-end': !isLoggedIn && !isHome,
       })}
     >
       <div className={clsx(`flex items-center`, { 'items-end': !isLoggedIn })}>
         {!isDesktop && isLoggedIn && <UserInfo />}
-        {!isLoggedIn && !isDesktop && <AuthButtons />}
+        {!isLoggedIn && !isDesktop && isHome && <AuthButtons />}
         {(isTablet || isMobile) && <MenuButton toggleNav={toggleNav} />}
       </div>
 

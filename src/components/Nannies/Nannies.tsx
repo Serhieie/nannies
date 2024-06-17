@@ -8,7 +8,7 @@ import { AppDispatch } from '@/redux/store';
 import { Container } from '../Parts/Container/Container';
 import { Button } from '../Parts/Button/Button';
 import { Modal } from '../Modal/Modal';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import {
   setIsAppointmentOpen,
   setIsLoginModalOpen,
@@ -23,7 +23,6 @@ export const Nannies: React.FC<NanniesProps> = ({ nannies }) => {
   const [perPage, setPerPage] = useState(3);
   const { isLoginPopUpOpen, isAppointmentOpen } = useModalsState();
   const dispatch = useDispatch<AppDispatch>();
-  const navigate = useNavigate();
   const location = useLocation();
   const isFavoritesPage = location.pathname === '/favorites';
   const showLoadMore = total > perPage;
@@ -44,7 +43,6 @@ export const Nannies: React.FC<NanniesProps> = ({ nannies }) => {
 
   const handleLoginClick = () => {
     closeIsLoginPopUpOpen();
-    navigate('/');
     setTimeout(() => {
       dispatch(setIsLoginModalOpen(true));
     }, 300);

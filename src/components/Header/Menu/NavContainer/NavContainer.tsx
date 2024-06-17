@@ -48,11 +48,11 @@ export const NavContainer: React.FC<NavContainerProps> = ({
         )}
       >
         {!isDesktop && <ThemeSelector />}
-        {isDesktop && isHome && !isLoggedIn && <AuthButtons />}
         {!isDesktop && <NavList isNavOpen={isNavOpen} onClose={toggleNav} />}
         {!isDesktop && isLoggedIn && (
           <LogoutButton className="min-h-[58px]" handleLogout={handleLogout} />
         )}
+        {!isLoggedIn && !isHome && <AuthButtons />}
         {isDesktop && <UserInfo />}
         {isDesktop && <ThemeSelector />}
       </div>
