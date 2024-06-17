@@ -1,1 +1,0 @@
-import{d as e,O as f,P as u}from"./index-D7RaLf67.js";const F=()=>{const{nannies:t,isLoading:s,error:n,activeNannie:a,favorites:i,page:r,total:o}=e(d=>d.nannies),c=e(f),l=e(u);return{nannies:t,isLoading:s,error:n,activeNannie:a,favorites:i,filteredFavorites:c,filteredNannies:l,page:r,total:o}};export{F as u};
