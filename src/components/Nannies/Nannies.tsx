@@ -21,12 +21,13 @@ import { Input } from '../Parts/Input/Input';
 import { NoFilteredNannies } from '../pages/NanniesPage/NoFilteredNannies';
 import { setSearchedName } from '@/redux/filters/filtersSlice';
 import { capitalizedName } from '@/helpers';
+import { NanniesListSkeleton } from '../Skelletons/NanniesListSkeleton/NanniesListSkeleton';
 
 export const Nannies: React.FC<NanniesProps> = ({
   nannies,
   isFavorite = false,
 }) => {
-  const { activeNannie, total } = useNanniesState();
+  const { activeNannie, total, isLoading } = useNanniesState();
   const { searchedName } = useFiltersState();
   const { filter, favoriteFilter } = useFiltersState();
   const [perPage, setPerPage] = useState(3);
@@ -70,7 +71,6 @@ export const Nannies: React.FC<NanniesProps> = ({
   );
 
   const isNannies = filteredNannies.length > 0;
-
   return (
     <>
       <Container>
@@ -100,21 +100,27 @@ export const Nannies: React.FC<NanniesProps> = ({
             />
           </div>
 
-          {isNannies ? (
-            <NanniesList nannies={filteredNannies} />
+          {isLoading && !isFavorite ? (
+            <NanniesListSkeleton />
           ) : (
-            <NoFilteredNannies title="nannies" />
-          )}
-          {!isFavoritesPage && showLoadMore && (
-            <Button
-              className={clsx(
-                'mx-auto mt-16 max-w-[160px] border border-transparent text-skin-inverted',
-                'hover:border-skin-primary'
+            <>
+              {isNannies ? (
+                <NanniesList nannies={filteredNannies} />
+              ) : (
+                <NoFilteredNannies title="nannies" />
               )}
-              text="Load More"
-              type="button"
-              onClick={loadMore}
-            />
+              {!isFavoritesPage && showLoadMore && (
+                <Button
+                  className={clsx(
+                    'mx-auto mt-16 max-w-[160px] border border-transparent text-skin-inverted',
+                    'hover:border-skin-primary'
+                  )}
+                  text="Load More"
+                  type="button"
+                  onClick={loadMore}
+                />
+              )}
+            </>
           )}
         </div>
       </Container>

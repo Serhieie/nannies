@@ -31,11 +31,12 @@ const nanniesSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchNannies.pending, handlePending)
-      .addCase(fetchNannies.fulfilled, (state, action) => {
+      .addCase(fetchNannies.fulfilled, (state: NanniesState, action) => {
         state.nannies = action.payload;
+        state.isLoading = false;
         state.error = null;
       })
-      .addCase(fetchNannies.rejected, (state, action) => {
+      .addCase(fetchNannies.rejected, (state: NanniesState, action) => {
         state.error = action.payload as string;
       })
       .addCase(fetchNanniesTotal.pending, handlePending)
