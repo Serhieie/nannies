@@ -1,5 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { setFilter, setSearchedName } from 'filters/filtersSlice';
+import {
+  setFavoriteFilter,
+  setFilter,
+  setSearchedName,
+} from 'filters/filtersSlice';
 import { AppDispatch } from '@/redux/store';
 import clsx from 'clsx';
 import { Button } from '@/components/Parts/Button/Button';
@@ -11,17 +15,23 @@ import {
 
 interface NoFilteredNanniesProps {
   title: string;
+  isFavorite: boolean;
 }
 
 export const NoFilteredNannies: React.FC<NoFilteredNanniesProps> = ({
   title,
+  isFavorite,
 }) => {
   const dispatch = useDispatch<AppDispatch>();
   const filter = useSelector(selectFilter);
   const searchedName = useSelector(selectSearchedName);
 
   const resetFilters = () => {
-    dispatch(setFilter('Show all'));
+    if (isFavorite) {
+      dispatch(setFavoriteFilter('Show all'));
+    } else {
+      dispatch(setFilter('Show all'));
+    }
     dispatch(setSearchedName(''));
   };
 

@@ -100,14 +100,14 @@ export const Nannies: React.FC<NanniesProps> = ({
             />
           </div>
 
-          {isLoading && !isFavorite ? (
+          {isLoading && !isFavoritesPage ? (
             <NanniesListSkeleton />
           ) : (
             <>
               {isNannies ? (
                 <NanniesList nannies={filteredNannies} />
               ) : (
-                <NoFilteredNannies title="nannies" />
+                <NoFilteredNannies isFavorite={isFavorite} title="nannies" />
               )}
               {!isFavoritesPage && showLoadMore && (
                 <Button

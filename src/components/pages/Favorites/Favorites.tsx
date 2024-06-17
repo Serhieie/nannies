@@ -14,7 +14,7 @@ const Favorites: React.FC = () => {
           {filteredFavoritesLength ? (
             <Nannies isFavorite={true} nannies={filteredFavorites} />
           ) : (
-            <NoFilteredNannies title="favorite nannies" />
+            <NoFilteredNannies isFavorite={true} title="favorite nannies" />
           )}
         </>
       ) : (
