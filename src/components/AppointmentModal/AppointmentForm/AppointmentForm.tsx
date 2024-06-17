@@ -81,6 +81,9 @@ export const AppointmentForm = () => {
         render={({ field }) => (
           <div className="w-full" style={{ gridArea: 'datePicker' }}>
             <TimePicker selected={field.value} onChange={field.onChange} />
+            <p className="absolute text-center text-sm text-red-500">
+              {errors.date?.message}
+            </p>
           </div>
         )}
       />

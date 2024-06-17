@@ -7,6 +7,7 @@ export const appointmentSchema = yup.object().shape({
   date: yup.date().required('Booking date is required'),
   email: yup
     .string()
+    .required('Email is required')
     .test(
       'has-one-at-symbol',
       'Email must contain exactly one "@" symbol',
@@ -18,7 +19,7 @@ export const appointmentSchema = yup.object().shape({
       (value) => {
         const atIndex = value?.indexOf('@');
         const dotIndex = value?.indexOf('.', atIndex !== -1 ? atIndex : 0);
-        if (dotIndex && atIndex) dotIndex > atIndex!;
+        return dotIndex > atIndex;
       }
     )
     .matches(
