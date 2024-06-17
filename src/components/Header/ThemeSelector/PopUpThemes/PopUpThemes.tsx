@@ -6,7 +6,7 @@ import { changeUserTheme } from 'users/userSlice';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '@/redux/store';
 import { useUserState } from '@/hooks';
-import React from 'react'; // Make sure to import React
+import React from 'react';
 
 const themes = ['Red', 'Blue', 'Green'];
 
@@ -29,7 +29,6 @@ export const PopUpThemes: React.FC<PopUpThemesProps> = ({
     if (theme) {
       document.body.classList.remove('theme-blue', 'theme-green');
       document.body.classList.add(`theme-${theme}`);
-      toggleOpenTheme();
     }
   }, [theme]);
 
@@ -57,17 +56,9 @@ export const PopUpThemes: React.FC<PopUpThemesProps> = ({
     };
   }, [isThemePopUpOpen, toggleOpenTheme, themeSelectorRef]);
 
-  // Stop click event from propagating outside of the popup
-  const handleClickInside = (
-    event: React.MouseEvent<HTMLDivElement, MouseEvent>
-  ) => {
-    event.stopPropagation();
-  };
-
   return (
     <div
       ref={themeRef}
-      onClick={handleClickInside}
       className={clsx(
         'absolute right-0 top-20 z-40 flex h-32 w-28 flex-col justify-center p-4',
         'gap-1.5 rounded-md border border-skin-primary bg-skin-background-white',

@@ -4,7 +4,7 @@ import { NanniesListProps } from './NanniesList.types';
 
 export const NanniesList: React.FC<NanniesListProps> = ({ nannies }) => {
   return (
-    <ul className="mt-10 flex min-h-[calc(100dvh-510px)] w-full flex-col gap-8">
+    <ul className="mt-10 flex min-h-[1040px] w-full flex-col gap-8">
       {nannies?.map((nanny) => (
         <NanniesListItem key={nanoid()} nanny={nanny} />
       ))}

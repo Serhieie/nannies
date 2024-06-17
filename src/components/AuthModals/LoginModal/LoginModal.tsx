@@ -33,8 +33,8 @@ export const LoginForm = () => {
     setShowPassword(!showPassword);
   };
 
-  const onSubmit = (data: LoginFormInputs) => {
-    dispatch(loginUser(data));
+  const onSubmit = async (data: LoginFormInputs) => {
+    await dispatch(loginUser(data));
     reset();
     dispatch(setIsLoginModalOpen(false));
   };

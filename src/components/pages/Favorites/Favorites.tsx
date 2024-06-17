@@ -1,7 +1,7 @@
 import { useNanniesState } from '@/hooks';
 import { Nannies } from '../../Nannies/Nannies';
 import { NoFavorites } from '../../NoFavorites/NoFavorites';
-import { NoFilteredFavorites } from '../../NoFavorites/NoFilteredFavorites';
+import { NoFilteredNannies } from '../NanniesPage/NoFilteredNannies';
 
 const Favorites: React.FC = () => {
   const { filteredFavorites, favorites } = useNanniesState();
@@ -12,9 +12,9 @@ const Favorites: React.FC = () => {
       {favoritesLength ? (
         <>
           {filteredFavoritesLength ? (
-            <Nannies nannies={filteredFavorites} />
+            <Nannies isFavorite={true} nannies={filteredFavorites} />
           ) : (
-            <NoFilteredFavorites />
+            <NoFilteredNannies title="favorite nannies" />
           )}
         </>
       ) : (

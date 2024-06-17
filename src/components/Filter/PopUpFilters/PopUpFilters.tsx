@@ -1,21 +1,21 @@
 import React, { useEffect, useRef } from 'react';
 import { nanoid } from '@reduxjs/toolkit';
 import { clsx } from 'clsx';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { AppDispatch } from '@/redux/store';
 import { PopUpFiltersProps } from './PopUpFilters.types';
-import { selectFilter } from 'nannies/nanniesSelectors';
 import filters from '../filters.json';
-import { setFilter } from 'filters/filtersSlice';
+import { setFavoriteFilter, setFilter } from 'filters/filtersSlice';
 import { FilterType } from 'filters/filters.types';
 
 export const PopUpFilters: React.FC<PopUpFiltersProps> = ({
   isFiltersOpen,
   toggleOpenFilters,
   filterRef,
+  chosenFilter,
+  isFavorite,
 }) => {
   const dispatch = useDispatch<AppDispatch>();
-  const chosedFilter = useSelector(selectFilter);
   const popUpRef = useRef<HTMLDivElement>(null);
 
   //close by click
@@ -43,7 +43,9 @@ export const PopUpFilters: React.FC<PopUpFiltersProps> = ({
   }, [isFiltersOpen, toggleOpenFilters, filterRef]);
 
   const handleChangeFilter = (filter: FilterType) => {
-    dispatch(setFilter(filter));
+    if (isFavorite) {
+      dispatch(setFavoriteFilter(filter));
+    } else dispatch(setFilter(filter));
   };
 
   return (
@@ -69,8 +71,8 @@ export const PopUpFilters: React.FC<PopUpFiltersProps> = ({
             'transition-colors duration-300 ease-in-out hover:text-skin-theme',
             'select-none',
             {
-              'text-skin-base': chosedFilter === filter.title,
-              'text-skin-secondary': chosedFilter !== filter.title,
+              'text-skin-base': chosenFilter === filter.title,
+              'text-skin-secondary': chosenFilter !== filter.title,
             }
           )}
           onClick={() => handleChangeFilter(filter.title as FilterType)}

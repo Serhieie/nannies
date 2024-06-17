@@ -1,16 +1,30 @@
-import { useDispatch } from 'react-redux';
-import { setFilter } from 'filters/filtersSlice';
-import { Button } from '../Parts/Button/Button';
+import { useDispatch, useSelector } from 'react-redux';
+import { setFilter, setSearchedName } from 'filters/filtersSlice';
 import { AppDispatch } from '@/redux/store';
 import clsx from 'clsx';
-import { useFiltersState } from '@/hooks';
+import { Button } from '@/components/Parts/Button/Button';
+import { capitalizedName } from '@/helpers';
+import {
+  selectFilter,
+  selectSearchedName,
+} from '@/redux/filters/filtersSelectors';
 
-export const NoFilteredFavorites: React.FC = () => {
+interface NoFilteredNanniesProps {
+  title: string;
+}
+
+export const NoFilteredNannies: React.FC<NoFilteredNanniesProps> = ({
+  title,
+}) => {
   const dispatch = useDispatch<AppDispatch>();
-  const { filter } = useFiltersState();
+  const filter = useSelector(selectFilter);
+  const searchedName = useSelector(selectSearchedName);
+
   const resetFilters = () => {
     dispatch(setFilter('Show all'));
+    dispatch(setSearchedName(''));
   };
+
   return (
     <div className="flex h-[80dvh] w-full items-center justify-center xs:px-2 sm:px-4">
       <div
@@ -20,9 +34,20 @@ export const NoFilteredFavorites: React.FC = () => {
         )}
       >
         <h2>
-          No favorites with{' '}
+          No {` ${title} `} with{' '}
           <span className="text-skin-theme underline">{`"${filter}"`}</span>{' '}
-          sort parameter
+          sort parameter{' '}
+          {searchedName ? (
+            <>
+              and{' '}
+              <span className="text-skin-theme">
+                {capitalizedName(searchedName)}
+              </span>{' '}
+              name
+            </>
+          ) : (
+            ''
+          )}
         </h2>
         <p>Try to chose different sorter parameters</p>
         <Button

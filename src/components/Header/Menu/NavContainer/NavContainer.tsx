@@ -54,6 +54,7 @@ export const NavContainer: React.FC<NavContainerProps> = ({
         )}
         {!isLoggedIn && !isHome && <AuthButtons />}
         {isDesktop && <UserInfo />}
+        {!isLoggedIn && isDesktop && isHome && <AuthButtons />}
         {isDesktop && <ThemeSelector />}
       </div>
     </div>

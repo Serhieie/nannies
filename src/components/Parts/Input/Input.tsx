@@ -1,5 +1,6 @@
 import clsx from 'clsx';
 import { PasswordVisibilityBtn } from '../PasswordVisiblityBtn/PasswordVisibilityBtn';
+import { IoSearchSharp } from 'react-icons/io5';
 import { InputProps } from './Input.types';
 import { FieldError } from 'react-hook-form';
 
@@ -9,9 +10,12 @@ export const Input: React.FC<InputProps> = ({
   errors,
   showPassword = false,
   togglePasswordVisibility = null,
+  onChange,
   id,
   type,
   placeholder,
+  filterByName = false,
+  value = null,
   labelClasses = '',
   inputClasses = '',
   errorClasses = '',
@@ -36,11 +40,22 @@ export const Input: React.FC<InputProps> = ({
           `bg-skin-background-white focus:border-skin-primary active:border-skin-primary`,
           ` ${inputClasses}`
         )}
+        onChange={onChange ? onChange : null}
         id={id}
         placeholder={placeholder}
         type={type}
+        value={value && value}
         {...(register ? register(id, { required }) : {})}
       />
+      {filterByName && (
+        <IoSearchSharp
+          size={24}
+          className={clsx(
+            'absolute right-4 top-1/2 -translate-y-1/2',
+            'text-skin-theme opacity-40'
+          )}
+        />
+      )}
       {errorMessage && (
         <p
           className={`absolute text-center text-sm text-red-500 ${errorClasses}`}

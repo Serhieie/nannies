@@ -5,7 +5,6 @@ import { validationRegisterSchema } from '@/schemas';
 import { Button } from 'components/Parts/Button/Button';
 import { registerUser } from 'users/userOperations';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import { AppDispatch } from '@/redux/store';
 import { setIsRegistrationModalOpen } from 'modalsState/modalsSlice';
 import { RegistrationFormInputs } from './RegistrationModal.types';
@@ -28,16 +27,14 @@ const RegisterForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const { isLoading } = useUserState();
   const dispatch = useDispatch<AppDispatch>();
-  const navigate = useNavigate();
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
 
-  const onSubmit = (data: RegistrationFormInputs) => {
-    dispatch(registerUser(data));
+  const onSubmit = async (data: RegistrationFormInputs) => {
+    await dispatch(registerUser(data));
     reset();
-    navigate('/nannies');
     dispatch(setIsRegistrationModalOpen(false));
   };
 

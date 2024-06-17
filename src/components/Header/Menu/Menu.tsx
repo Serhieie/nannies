@@ -44,6 +44,7 @@ export const Menu: React.FC = () => {
 
       <Overlay isNavOpen={isNavOpen} onClose={toggleNav} />
       <NavContainer isNavOpen={isNavOpen} toggleNav={toggleNav} />
+
       {isDesktop && isLoggedIn && (
         <LogoutButton className="max-w-[134px]" handleLogout={handleLogout} />
       )}

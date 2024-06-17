@@ -9,4 +9,6 @@ export type FilterType =
 
 export interface FiltersState {
   filter: FilterType;
+  favoriteFilter: FilterType;
+  searchedName: string;
 }

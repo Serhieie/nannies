@@ -17,16 +17,16 @@ export const handleRejected = (
   };
 };
 
-export const handleLogoutFulfilled = (state: UserState): UserState => {
+export const handleLogoutFulfilled = (): UserState => {
   return {
-    ...state,
-    isLoadingUser: false,
-    isLoggedIn: false,
-    photoURL: '',
     name: '',
     email: '',
     token: '',
+    theme: '',
     error: null,
+    isLoggedIn: false,
+    isLoadingUser: false,
+    photoURL: '',
   };
 };
 

@@ -13,13 +13,22 @@ import {
   setIsAppointmentOpen,
   setIsLoginModalOpen,
   setIsLoginPopUpOpen,
-} from '../../redux/modals/modalsSlice';
-import { useModalsState, useNanniesState } from '../../hooks';
+} from '@/redux/modals/modalsSlice';
+import { useFiltersState, useModalsState, useNanniesState } from '@/hooks';
 import { AppointmentModal } from '../AppointmentModal/AppointmentModa';
 import clsx from 'clsx';
+import { Input } from '../Parts/Input/Input';
+import { NoFilteredNannies } from '../pages/NanniesPage/NoFilteredNannies';
+import { setSearchedName } from '@/redux/filters/filtersSlice';
+import { capitalizedName } from '@/helpers';
 
-export const Nannies: React.FC<NanniesProps> = ({ nannies }) => {
+export const Nannies: React.FC<NanniesProps> = ({
+  nannies,
+  isFavorite = false,
+}) => {
   const { activeNannie, total } = useNanniesState();
+  const { searchedName } = useFiltersState();
+  const { filter, favoriteFilter } = useFiltersState();
   const [perPage, setPerPage] = useState(3);
   const { isLoginPopUpOpen, isAppointmentOpen } = useModalsState();
   const dispatch = useDispatch<AppDispatch>();
@@ -52,12 +61,50 @@ export const Nannies: React.FC<NanniesProps> = ({ nannies }) => {
     dispatch(setIsAppointmentOpen(false));
   };
 
+  const findByName = (event: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(setSearchedName(event.target.value.toLowerCase()));
+  };
+
+  const filteredNannies = nannies.filter((nanny) =>
+    nanny.name.toLowerCase().includes(searchedName)
+  );
+
+  const isNannies = filteredNannies.length > 0;
+
   return (
     <>
       <Container>
         <div className="mb-24 mt-16 min-h-[calc(100dvh-260px)]">
-          <Filter />
-          <NanniesList nannies={nannies} />
+          <div
+            className={clsx(
+              'flex items-center gap-4 xs:flex-col sm2:flex-row',
+              'font-normal'
+            )}
+          >
+            <Filter
+              isFavorite={isFavorite}
+              filter={isFavorite ? favoriteFilter : filter}
+            />
+            <Input
+              labelClasses="relative min-h-12 max-w-56"
+              inputClasses={clsx(
+                'max-h-12 max-w-56 mx-auto rounded-[14px] px-[18px] py-[12px]',
+                'placeholder:text-skin-secondary'
+              )}
+              id="filterByName"
+              type="text"
+              placeholder="Find by name"
+              filterByName={true}
+              onChange={findByName}
+              value={capitalizedName(searchedName)}
+            />
+          </div>
+
+          {isNannies ? (
+            <NanniesList nannies={filteredNannies} />
+          ) : (
+            <NoFilteredNannies title="nannies" />
+          )}
           {!isFavoritesPage && showLoadMore && (
             <Button
               className={clsx(

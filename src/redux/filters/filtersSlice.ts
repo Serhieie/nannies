@@ -5,6 +5,8 @@ import { FiltersState, FilterType } from './filters.types';
 
 const initialState: FiltersState = {
   filter: 'Show all',
+  searchedName: '',
+  favoriteFilter: 'Show all',
 };
 
 const filtersSlice = createSlice({
@@ -14,12 +16,19 @@ const filtersSlice = createSlice({
     setFilter: (state, action: PayloadAction<FilterType>) => {
       state.filter = action.payload;
     },
+    setFavoriteFilter: (state, action: PayloadAction<FilterType>) => {
+      state.favoriteFilter = action.payload;
+    },
+    setSearchedName: (state, action: PayloadAction<string>) => {
+      state.searchedName = action.payload;
+    },
   },
 });
 
 const filtersPersistConfig = {
   key: 'filters',
   storage,
+  blacklist: ['searchedName'],
 };
 
 export const persistedFiltersReducer = persistReducer(
@@ -27,6 +36,7 @@ export const persistedFiltersReducer = persistReducer(
   filtersSlice.reducer
 );
 
-export const { setFilter } = filtersSlice.actions;
+export const { setFilter, setSearchedName, setFavoriteFilter } =
+  filtersSlice.actions;
 
 export default filtersSlice.reducer;

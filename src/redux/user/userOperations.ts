@@ -25,20 +25,20 @@ export const registerUser = createAsyncThunk<
   try {
     const userCredential = await createUserWithEmailAndPassword(
       auth,
-      credentials.email,
-      credentials.password
+      credentials.email.trim().toLowerCase(),
+      credentials.password.trim()
     );
 
     const user = userCredential.user;
 
     await updateProfile(user, {
-      displayName: credentials.name,
+      displayName: credentials.name.trim(),
     });
 
     const userRef = ref(database, 'users/' + user.uid);
     await set(userRef, {
-      name: credentials.name,
-      email: user.email,
+      name: credentials.name.trim(),
+      email: user.email.trim().toLowerCase(),
     });
 
     toast.success('Registration success', {
@@ -73,8 +73,8 @@ export const loginUser = createAsyncThunk<
   try {
     const userCredential = await signInWithEmailAndPassword(
       auth,
-      credentials.email,
-      credentials.password
+      credentials.email.trim().toLowerCase(),
+      credentials.password.trim()
     );
 
     if (userCredential.user) {
@@ -151,13 +151,13 @@ export const updateUserProfile = createAsyncThunk<
 
   try {
     const updatedUserData: UpdatedUserProfile = {
-      name: credentials.updatedName,
+      name: credentials.updatedName.trim(),
       photoURL: '',
     };
 
     if (credentials.updatedName) {
       await updateProfile(user, {
-        displayName: credentials.updatedName,
+        displayName: credentials.updatedName.trim(),
       });
     }
 
@@ -173,8 +173,8 @@ export const updateUserProfile = createAsyncThunk<
         await deleteObject(storageReference);
       }
       await set(userRef, {
-        name: credentials.updatedName,
-        email: user.email,
+        name: credentials.updatedName.trim(),
+        email: user.email.trim().toLowerCase(),
         photoURL: '',
       });
 
@@ -199,16 +199,16 @@ export const updateUserProfile = createAsyncThunk<
       const downloadURL = await getDownloadURL(storageReference);
 
       await set(userRef, {
-        name: credentials.updatedName,
-        email: user.email,
+        name: credentials.updatedName.trim(),
+        email: user.email.trim().toLowerCase(),
         photoURL: downloadURL,
       });
 
       updatedUserData.photoURL = downloadURL;
     } else {
       await set(userRef, {
-        name: credentials.updatedName,
-        email: user.email,
+        name: credentials.updatedName.trim(),
+        email: user.email.trim().toLowerCase(),
         photoURL: currentPhotoURL,
       });
 
