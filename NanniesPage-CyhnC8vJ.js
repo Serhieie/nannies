@@ -1,1 +1,0 @@
-import{j as n}from"./index-BSrMKzIM.js";import{u as s}from"./useNannieState-snBs9puu.js";import{N as t}from"./Nannies-BwcG7qm_.js";const o=()=>{const{filteredNannies:e}=s();return n.jsx(n.Fragment,{children:n.jsx(t,{nannies:e})})};export{o as default};
