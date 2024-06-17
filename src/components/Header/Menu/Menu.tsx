@@ -27,11 +27,12 @@ export const Menu: React.FC = () => {
 
   return (
     <div
-      className={clsx(
-        `relative flex w-full items-center xs:justify-center md:justify-end`
-      )}
+      className={clsx(`relative flex w-full items-center`, {
+        'xs:justify-center md:justify-end': isLoggedIn,
+        'justify-end': !isLoggedIn,
+      })}
     >
-      <div className={`flex items-center`}>
+      <div className={clsx(`flex items-center`, { 'items-end': !isLoggedIn })}>
         {!isDesktop && isLoggedIn && <UserInfo />}
         {!isLoggedIn && !isDesktop && <AuthButtons />}
         {(isTablet || isMobile) && <MenuButton toggleNav={toggleNav} />}

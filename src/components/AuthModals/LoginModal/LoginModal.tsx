@@ -46,7 +46,7 @@ export const LoginForm = () => {
 
   return (
     <form
-      className="xs:min-w-[260px]"
+      className="custom-scrollbar xs:min-w-[260px]"
       onSubmit={handleSubmit(onSubmit)}
       noValidate
       autoComplete="off"

@@ -34,8 +34,8 @@ export const Modal: React.FC<ModalProps> = ({
       'scale-100': isOpen,
       'scale-75': !isOpen,
       'max-w-[565px]': regOrLog,
-      'top-2 bottom-2 overflow-hidden lg:pr-8': isHeight && !regOrLog,
-      'top-1/2 transform -translate-y-1/2': !isHeight || regOrLog,
+      'top-2 bottom-2 overflow-hidden lg:pr-8': isHeight,
+      'top-1/2 transform -translate-y-1/2': !isHeight,
     }
   );
 

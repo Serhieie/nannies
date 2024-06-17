@@ -2,8 +2,10 @@ import { useLocation } from 'react-router-dom';
 import { Logo } from './Logo/Logo';
 import { Menu } from './Menu/Menu';
 import clsx from 'clsx';
+import { useUserState } from '@/hooks';
 
 export const Header: React.FC = () => {
+  const { isLoggedIn } = useUserState();
   const location = useLocation();
   const isHome = location.pathname === '/';
   return (
@@ -29,7 +31,11 @@ export const Header: React.FC = () => {
       ></div>
       <div
         className={clsx(
-          'flex h-full w-full items-center justify-between xs:flex-col xs:py-2 md:flex-row md2:py-0 xl:gap-24'
+          'flex h-full w-full items-center justify-between xs:py-2 md2:py-0 xl:gap-24',
+          {
+            'xs:flex-col md:flex-row': isLoggedIn || isHome,
+            'flex-row': !isLoggedIn,
+          }
         )}
       >
         <Logo />

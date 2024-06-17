@@ -19,7 +19,7 @@ export const NavContainer: React.FC<NavContainerProps> = ({
   const isHome = location.pathname === '/';
   const dispatch = useDispatch<AppDispatch>();
   const { isLoggedIn } = useUserState();
-  const { isTablet, isMobile, isDesktop } = useMedia();
+  const { isTablet, isMobile, isDesktop, isHeightLow } = useMedia();
 
   const handleLogout = () => {
     dispatch(logoutUser());
@@ -31,9 +31,12 @@ export const NavContainer: React.FC<NavContainerProps> = ({
         'xl:space-between z-50 flex items-center gap-10 transition-all duration-500',
         'fixed xs:flex-col xs:justify-center xl:static xl:w-full xl:flex-row',
         {
-          'bottom-0 right-0 top-0 bg-skin-background px-12 text-skin-inverted md:w-96':
+          'bottom-0 right-0 top-0 bg-skin-background px-12 text-skin-inverted':
             isNavOpen && (isTablet || isMobile),
-          '-right-96 bottom-0 top-0 w-72': !isNavOpen && (isTablet || isMobile),
+          'xs:w-[50dvh] sm:w-[74dvw]': isHeightLow,
+          'md:w-96': !isHeightLow,
+          '-right-[100dvw] bottom-0 top-0 w-72':
+            !isNavOpen && (isTablet || isMobile),
         }
       )}
     >

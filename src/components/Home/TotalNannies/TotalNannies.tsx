@@ -1,21 +1,24 @@
-import { useMedia, useNanniesState } from '@/hooks';
+import { useMedia, useNanniesState, useUserState } from '@/hooks';
 import clsx from 'clsx';
 import { ImCheckmark } from 'react-icons/im';
 import { NavLink } from 'react-router-dom';
 
 export const TotalNannies: React.FC = () => {
   const { total } = useNanniesState();
-  const { isMobile } = useMedia();
+  const { isLoggedIn } = useUserState();
+  const { isMobile, isHeightLow } = useMedia();
   return (
     <NavLink
       to={'/nannies'}
       className={clsx(
-        'h-[118px] w-[284px] cursor-pointer bg-skin-background-white',
-        'absolute flex gap-4',
+        'h-[100px] w-[244px] cursor-pointer bg-skin-background-white md:h-[118px] md:w-[284px]',
+        'absolute flex gap-4 transition-all duration-300',
         'items-center justify-center rounded-[20px]',
         {
-          'left-1/2 top-32 -translate-x-1/2': isMobile,
+          'left-1/2 top-32 -translate-x-1/2': isMobile && isLoggedIn,
+          'left-1/2 top-[180px] -translate-x-1/2': isMobile && !isLoggedIn,
           'bottom-[50px] right-[50px]': !isMobile,
+          hidden: isHeightLow,
         }
       )}
     >

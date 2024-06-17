@@ -43,7 +43,7 @@ const RegisterForm = () => {
 
   return (
     <form
-      className="mt-2.5 flex flex-col gap-5"
+      className="mt-2.5 flex flex-col gap-5 custom-scrollbar"
       onSubmit={handleSubmit(onSubmit)}
       noValidate
       autoComplete="off"

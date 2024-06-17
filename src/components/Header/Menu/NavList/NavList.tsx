@@ -11,7 +11,7 @@ const links = [
 ];
 
 export const NavList: React.FC<NavListProps> = ({ onClose }) => {
-  const { isDesktop } = useMedia();
+  const { isDesktop, isHeightLow } = useMedia();
   const { token, isLoggedIn } = useUserState();
   const isFavoritesAvailable = token && isLoggedIn;
 
@@ -29,7 +29,10 @@ export const NavList: React.FC<NavListProps> = ({ onClose }) => {
       <ul
         className={clsx(
           'flex items-center justify-center gap-10 xs:w-[194px]',
-          'flex-col xl:flex-row'
+          {
+            'xs:flex-col sm:flex-row': isHeightLow,
+            'flex-col xl:flex-row': !isHeightLow,
+          }
         )}
       >
         {links.map((link) =>
