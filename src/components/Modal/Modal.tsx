@@ -3,7 +3,6 @@ import sprite from 'assets/sprite.svg';
 import { ModalProps } from './Modal.types';
 import { useMedia } from '@/hooks';
 import clsx from 'clsx';
-import { useLocation } from 'react-router-dom';
 
 ReactModal.setAppElement('#root-modal');
 
