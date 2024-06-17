@@ -5,7 +5,7 @@ export const AdditionalInfoSkeleton: React.FC = () => {
   return (
     <ul className="flex flex-wrap gap-1">
       {info.map((_, index) => (
-        <li className="flex gap-1 xs:flex-col md:flex-row">
+        <li key={index} className="flex gap-1 xs:flex-col md:flex-row">
           <span
             className={clsx(`h-6 rounded-xl bg-skin-grey opacity-20`, {
               'w-20': index === 0,
