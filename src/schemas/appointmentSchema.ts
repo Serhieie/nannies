@@ -1,8 +1,13 @@
 import * as yup from 'yup';
 
+const phoneRegExp = /^\+?[\d\-() ]+$/;
+
 export const appointmentSchema = yup.object().shape({
   address: yup.string().required('Address is required'),
-  tel: yup.string().required('Phone number is required'),
+  tel: yup
+    .string()
+    .required('Phone number is required')
+    .matches(phoneRegExp, 'Phone number is not valid'),
   childAge: yup.string().required('Child age is required'),
   date: yup.date().required('Booking date is required'),
   email: yup
